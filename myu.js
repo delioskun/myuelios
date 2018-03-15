@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const sec = require('search-engine-google');
+const sec = require('jsearch');
 const get_phrases = require('./phrases');
 const isgd = require('isgd');  
 	  
@@ -36,10 +36,9 @@ myu.on('message', message => {
 			break;
 		}
 		
-		sec.bing(usersearchview).then(function(gotcha){	
-		if(usersearch.length <= 2 && usersearch.length > 0){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
-		console.log(result);
-		});			
+		sec.bing('queryStringYouWant',10,function(response){
+		console.log(response) // Show the links for 10 pages on Google
+	})		
 		
 	 }
 	 switch(command){

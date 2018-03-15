@@ -26,12 +26,12 @@ myu.on('message', message => {
 		let usersearchview = "";
 		switch(command){
 			case "elwiki":
-			usersearchview = othercontent(usersearch) + " - El wiki";
+			usersearchview = othercontent(usersearch) + " site:elwiki.net";
 			if(usersearch){ 
 			js.bing(encodeURI(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
 			if(result_tab != undefined){
-				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${res}`) });
+				message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${result_tab}`);
 			}			
 			});	
 			}else{
@@ -79,10 +79,10 @@ myu.on('message', message => {
 		 message.delete(0, console.log(''));
 		 break;
 		 case 'omg':
-		 if(catched_phrases.length == 24){catched_phrases = [];}
+		 if(catched_phrases.length == phrases.length){catched_phrases = [];}
 		 var choosen_phrase = 0;
 		 do{
-		 choosen_phrase = Math.floor((Math.random() * 24));	 
+		 choosen_phrase = Math.floor((Math.random() * phrases.length));	 
 		 }
 		 while(catched_phrases.includes(choosen_phrase));
 		 message.channel.send(phrases[choosen_phrase]);
@@ -113,17 +113,6 @@ myu.on('message', message => {
 		}}else{
 		 message.reply(`Você não pode usar esse comando u-u''`);	
 		}
-		 break;
-		 case 'Oi':
-		 message.reply("Olá! ^^");
-		 break;
-		 case 'Olá!':
-		 message.reply("Olá! ^^");
-		 break;
-		 case 'search':
-       	 sec.bing("Elwiki Rose").then(function(result){
-		 console.log(result);
-		 });
 		 break;
 		 case 'chamada':
 		 message.channel.send("Me chamaram?");

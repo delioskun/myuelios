@@ -101,7 +101,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			  console.log("/search?q="+arguments[0]+"&first="+b+"1&FORM=QBRE");	
 				bAyarlar = {
 					host: "www.bing.com",
-					path: "/search?q="+arguments[0]+"&first="+b+"1&FORM=QBRE"
+					path: "/search?q="+arguments[0]+"&qs=n&form=QBRE"
 				}
 				http.request(bAyarlar,(res)=>{
 					res.on("data",(d)=>{

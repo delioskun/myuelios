@@ -112,8 +112,7 @@ myu.on('message', message => {
 		 case 'reportchannel':
 		 let channel = args[0];
 		 console.log("=====================");	 
-		 console.log(message.member.permissions.has('ADMINISTRATOR'));
-		if(message.guild.owner.hasPermission("ADMINISTRATOR")){ 
+		if(message.member.permissions.has('ADMINISTRATOR')){ 
 		 if(myu.channels.exists("name", channel)){
 		 
 		var request = require("request");
@@ -127,7 +126,9 @@ myu.on('message', message => {
 		 message.channel.send(`Canal de reports alterado para ***${channel}***`);
 		 }else{
 		 message.channel.send(`Desculpa :c Não achei esse canal`);	 
-		}}
+		}}else{
+		 message.reply(`Você não pode usar esse comando u-u''`);	
+		}
 		 break;
 		 case 'Oi':
 		 message.reply("Olá! ^^");

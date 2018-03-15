@@ -24,7 +24,12 @@ module.exports = {
 		 "Pi....Ka....Chunnnng!!!!",
 		 "Este último look do Templário Cósmico ficou um ar-ra-so!",
 		 "O DDD pra Add o Add...3ioo38282j83c398c239n. **Fatal Error: Error on NaN Class.** ",
-		 "Há quanto tempo não vejo o Esper diabólico!Tá, essa foi péssima :C"
+		 "Há quanto tempo não vejo o Esper diabólico!Tá, essa foi péssima :C",
+		 "Reshian submersa está pegando fogo!",
+		 "Vou roubar todos os Poporus da Lupina <3",
+		 "Desculpa, tava lavando o cabelo qq",
+		 "Me deixa dormirrrrrrrrrrr >w<",
+		 "Parabéns! Descobriu a frase super secreta da Myu! Receberá um presente surpresa em 24 horas uwu"
 		 ];
    }
 }

@@ -3,9 +3,14 @@ const myu = new Discord.Client();
 const cheerio = require('cheerio'),
       snekfetch = require('snekfetch'),
       querystring = require('querystring'),
+	  google = require('google'),
+	  get_phrases = require('./phrases');
 	  isgd = require('isgd');  
-
-var options = {};	  	  
+	  
+let phrases = get_phrases.myu_phrases();
+	  
+var options = {};
+var catched_phrases = [];	  	  
 	  
 /******************************************************/	  
 	  
@@ -17,7 +22,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis');console.log('Driver on! P
 myu.on('message', message => {
 		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
-		const command = args[1].toLowerCase();	
+		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();	
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
@@ -34,17 +39,15 @@ myu.on('message', message => {
 			break;
 		}
 		
-		let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(usersearchview)}`;
-		snekfetch.get(searchUrl).then((result) => {
-		let $ = cheerio.load(result.text); let googleData = $('.r').first().find('a').first().attr('href');
-		googleData = querystring.parse(googleData.replace('/url?', ''));
-		if(usersearch.length <= 2 && usersearch.length > 0){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
+		google.resultsPerPage = 1;
+		google(usersearchview, function (err, gotcha){	
+		if(usersearch.length <= 2 && usersearch.length > 0){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
 		switch(command){
 			case "elwiki":
 			if(usersearch.length > 0){	
-			if(!(googleData.q).includes("elwiki")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			let linkresult = googleData.q;
-			if((googleData.q).includes("pt-br")){linkresult = linkresult.replace("/pt-br","");}
+			if(!(gotcha.links[0].link).includes("elwiki")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
+			let linkresult = gotcha.links[0].link;
+			if((gotcha.links[0].link).includes("pt-br")){linkresult = linkresult.replace("/pt-br","");}
 			message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El wiki! \n${linkresult}`);
 			}else{
 			message.reply(`Confira informações e outros conteúdos sobre Elsword na El wiki!\nhttp://elwiki.net`);	
@@ -52,8 +55,8 @@ myu.on('message', message => {
 			break;
 			case "forum":
 			if(usersearch.length > 0){
-			if(!(googleData.q).includes("/forum/elsword")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			let virtualink = googleData.q;
+			if(!(gotcha.links[0].link).includes("/forum/elsword")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
+			let virtualink = gotcha.links[0].link;
 			if(virtualink.match(/[\?|\&]styleid=\d+/g)){virtualink = virtualink.replace(/styleid=\d+/g,'styleid=59');}
 			isgd.shorten(`${virtualink}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
 			}else{
@@ -61,14 +64,11 @@ myu.on('message', message => {
 			}
 			break;
 			case "elspoiler":
-			if(!(googleData.q).includes("/forum/elsword")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			isgd.shorten(`${googleData.q}?styleid=59`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
+			if(!(gotcha.links[0].link).includes("/forum/elsword")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
+			isgd.shorten(`${gotcha.links[0].link}?styleid=59`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
 			break;
 		}
-		}).catch((err) => {
-		console.log(err);	
-		message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :(');
-		});		
+		});			
 		
 	 }
 	 switch(command){
@@ -87,21 +87,14 @@ myu.on('message', message => {
 		 message.delete(0, console.log(''));
 		 break;
 		 case 'omg':
-		 let phrases = [
-		 "Elesis. O jogo de ação do momento!",
-		 "Alguém disse, sacrossanto?",
-		 "Eve rainha, resto nadinha",
-		 "Cóleeeeraaaa dooooo Dragãããão!!!",
-		 "Keep Calm e ESPADA ANCESTRAL!",
-		 "Minerva! Limpeza, maciez e perfume de Rosas.",
-		 "Hayaaaa!!!!",
-		 "Ô ô ô ô Aurora!",
-		 "Quem joga com capricho. Joga com Primor!",
-		 "Quando que o Raven vem me substituir? -.-'",
-		 "Pi....Ka....Chunnnng!!!!",
-		 "Há quanto tempo não vejo o Esper diabólico!"
-		 ]
-		 message.channel.send(phrases[Math.floor((Math.random() * 11))]);
+		 if(catched_phrases.length == 24){catched_phrases = [];}
+		 var choosen_phrase = 0;
+		 do{
+		 choosen_phrase = Math.floor((Math.random() * 24));	 
+		 }
+		 while(catched_phrases.includes(choosen_phrase));
+		 message.channel.send(phrases[choosen_phrase]);
+		 catched_phrases.push(choosen_phrase);
 		 break;
 		 case 'face':
 		 message.reply('Visite a nossa página no facebook!\nhttps://www.facebook.com/ElswordLU');
@@ -140,6 +133,9 @@ myu.on('message', message => {
     		 let args_db = process.env.BOT_DB;	 
 		 message.reply('dois');
 		 break;
+		 case 'chamada':
+		 message.channel.send("Me chamaram?");
+		 break;
 		 
 		 
 	 }
@@ -157,7 +153,7 @@ myu.on('message', message => {
 			message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","omg","report","forum","elwiki","elspoiler","Oi","Olá!","reportchannel","rise"].includes(command)){
+	 if(!["face","site","search","omg","report","forum","elwiki","chamada","elspoiler","Oi","Olá!","reportchannel","rise"].includes(command)){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",

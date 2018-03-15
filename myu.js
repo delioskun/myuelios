@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const sec = require('search-engine-client'),
-	  get_phrases = require('./phrases'),
-	  isgd = require('isgd');  
+const sec = require('search-engine-client');
+const get_phrases = require('./phrases');
+const isgd = require('isgd');  
 	  
 let phrases = get_phrases.myu_phrases();
 	  

@@ -31,6 +31,7 @@ myu.on('message', message => {
 			js.bing(encodeURI(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
 			if(result_tab != undefined){
+				result_tab = (result_tab.match(/\/\w+(|-br)$/g) ? result_tab.replace(/\/\w+(|-br)$/g,"") : result_tab);
 				message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${result_tab}`);
 			}			
 			});	

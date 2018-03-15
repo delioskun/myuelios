@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
 const     google = require('google'),
-	  get_phrases = require('./phrases');
+	  get_phrases = require('./phrases'),
 	  isgd = require('isgd');  
 	  
 let phrases = get_phrases.myu_phrases();

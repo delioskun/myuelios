@@ -97,8 +97,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			// bing search can be start :)
 			var bGelen = "" 
 			
-			for(b=0;b<=arguments[1];b++){
-			  console.log("/search?q="+arguments[0]+"&first="+b+"1&FORM=QBRE");	
+			for(b=0;b<=arguments[1];b++){	
 				bAyarlar = {
 					host: "www.bing.com",
 					path: "/search?q="+arguments[0]+"&qs=n&form=QBRE"

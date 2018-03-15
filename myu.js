@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const     google = require('google'),
+const sec = require('search-engine-client'),
 	  get_phrases = require('./phrases'),
 	  isgd = require('isgd');  
 	  
@@ -36,35 +36,9 @@ myu.on('message', message => {
 			break;
 		}
 		
-		google.resultsPerPage = 1;
-		google(usersearchview, function (err, gotcha){	
+		sec.bing(usersearchview).then(function(gotcha){	
 		if(usersearch.length <= 2 && usersearch.length > 0){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
-		switch(command){
-			case "elwiki":
-			if(usersearch.length > 0){	
-			if(!(gotcha.links[0].link).includes("elwiki")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
-			let linkresult = gotcha.links[0].link;
-			if((gotcha.links[0].link).includes("pt-br")){linkresult = linkresult.replace("/pt-br","");}
-			message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El wiki! \n${linkresult}`);
-			}else{
-			message.reply(`Confira informações e outros conteúdos sobre Elsword na El wiki!\nhttp://elwiki.net`);	
-			}
-			break;
-			case "forum":
-			if(usersearch.length > 0){
-			if(!(gotcha.links[0].link).includes("/forum/elsword")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
-			let virtualink = gotcha.links[0].link;
-			if(virtualink.match(/[\?|\&]styleid=\d+/g)){virtualink = virtualink.replace(/styleid=\d+/g,'styleid=59');}
-			isgd.shorten(`${virtualink}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
-			}else{
-			message.reply(`Visite o nosso fórum e confira conteúdos sobre o mundo de Elios!\nhttp://sites.levelupgames.com.br/forum/elsword/forum.php`);		
-			}
-			break;
-			case "elspoiler":
-			if(!(gotcha.links[0].link).includes("/forum/elsword")){message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :('); return;}
-			isgd.shorten(`${gotcha.links[0].link}?styleid=59`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
-			break;
-		}
+		console.log(result);
 		});			
 		
 	 }

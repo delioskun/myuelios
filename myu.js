@@ -111,6 +111,7 @@ myu.on('message', message => {
 		 break;
 		 case 'reportchannel':
 		 let channel = args[0];
+		 console.log('teste');
 		if(message.guild.owner.hasPermission("ADMINISTRATOR")){ 
 		 if(myu.channels.exists("name", channel)){
 		 

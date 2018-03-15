@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const js = require('jsearch'),
-      isgd = require('isgd');  
+const js = require('jsearch');
+const isgd = require('isgd');  
 
 var options = {};
 var catched_phrases = [];

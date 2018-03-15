@@ -12,7 +12,7 @@ var options = {};
 /******************************************************/	  
 	  
 myu.login(process.env.BOT_TOKEN);
-myu.on('ready', () => { myu.user.setActivity('Elesis');console.log(myu.channels); })
+myu.on('ready', () => { myu.user.setActivity('Elesis');console.log(myu.guild.id); })
 
 myu.on('message', message => {
 		if(message.cleanContent.startsWith('@Myu')){

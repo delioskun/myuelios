@@ -1,0 +1,19 @@
+{
+  "name": "myu",
+  "version": "1.0.0",
+  "description": "Bot a serviço dos aventureiros de Elios!",
+  "main": "myu.js",
+  "scripts": {
+    "start": "node myu.js"
+  },
+  "author": "Delios",
+  "license": "ISC",
+  "dependencies": {
+    "bing.search": "^1.0.1",
+    "cheerio": "^1.0.0-rc.2",
+    "discord.js": "^11.3.2",
+    "google-url": "0.0.4",
+    "isgd": "^1.1.3",
+    "node-googl": "0.0.2"
+  }
+}

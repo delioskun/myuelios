@@ -26,7 +26,7 @@ myu.on('message', message => {
 		let usersearchview = "";
 		switch(command){
 			case "elwiki":
-			usersearchview = othercontent(usersearch) + " site:elwiki.net";
+			usersearchview = othercontent(usersearch) + " elwiki.net";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;

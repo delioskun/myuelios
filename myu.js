@@ -28,9 +28,7 @@ myu.on('message', message => {
 			case "elwiki":
 			usersearchview = othercontent(usersearch) + " site:elwiki.net";
 			if(usersearch){ 
-			js.bing(encodeURIComponent(usersearchview),1,function(response){
-			console.log("-------------------------------");
-			console.log(response);	
+			js.bing(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = (result_tab.match(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g) ? result_tab.replace(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g,"") : result_tab);

@@ -1,22 +1,25 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const js = require('jsearch');
-const isgd = require('isgd');  
-
+const js = require('./jsearch'),
+	  get_phrases = require('./phrases'),
+	  isgd = require('isgd');  
+	  
+let phrases = get_phrases.myu_phrases();
+	  
 var options = {};
-var catched_phrases = [];
+var catched_phrases = [];	  	  
 	  
 /******************************************************/	  
 	  
 /******************************************************/	  
 	  
 myu.login(process.env.BOT_TOKEN);
-myu.on('ready', () => { myu.user.setActivity('Elesis'); })
+myu.on('ready', () => { myu.user.setActivity('Elesis');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
 		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
-		const command = args[1].toLowerCase();	
+		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();	
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
@@ -24,19 +27,41 @@ myu.on('message', message => {
 		switch(command){
 			case "elwiki":
 			usersearchview = othercontent(usersearch) + " - El wiki";
+			if(usersearch){ 
+			js.bing(encodeURI(usersearchview),1,function(response){
+			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
+			if(result_tab != undefined){
+				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${res}`) });
+			}			
+			});	
+			}else{
+			message.reply(`Confira informações e outros conteúdos sobre Elsword na El wiki!\nhttp://elwiki.net`);	
+			}
 			break;
 			case "forum":
+			var r_f = false;
 			usersearchview = usersearch + " \"showthread\" site:sites.levelupgames.com.br";
+			if(usersearch){ 
+			js.bing(encodeURI(usersearchview),1,function(response){
+			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
+			if(result_tab != undefined){
+				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
+			}
+			});	
+			}else{
+			message.reply(`Visite o nosso fórum e confira conteúdos sobre o mundo de Elios!\nhttp://sites.levelupgames.com.br/forum/elsword/forum.php`);	
+			}
 			break;
 			case "elspoiler":
-			usersearchview = "Elspoiler :last site:sites.levelupgames.com.br";
+			usersearchview = "Elspoiler :last site:sites.levelupgames.com.br"; 
+			js.bing(encodeURI(usersearchview),1,function(response){
+			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
+			if(result_tab != undefined){
+				isgd.shorten(`${result_tab}`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
+			}			
+			});	
 			break;
 		}
-		
-		js.google('Elsword Forum',10,function(response){
-		console.log(response) // Show the links for 10 pages on Google
-		})	
-		
 	 }
 	 switch(command){
 		 case 'report':
@@ -54,32 +79,6 @@ myu.on('message', message => {
 		 message.delete(0, console.log(''));
 		 break;
 		 case 'omg':
-		 let phrases = [
-		 "Elesis. O jogo de ação do momento!",
-		 "Lorde ficou engraçado agora: KEKEKEKEKEKE",
-		 "Alguém disse, sacrossanto?",
-		 "Brilha, brilha, espadinha. Quero ver você julgar!",
-		 "Eve rainha, resto nadinha",
-		 "Eu já disse que sou uma bot de familia. Não vou fazer piadas com a Código Absoluto D:",
-		 "Meus sensores estão com pouca memória Ran, acho que a Ara passou por aqui -w-",
-		 "As andorinhas voltaram! E a Vishnum também!",
-		 "O nome do jogo é Elsword? Juro que nem reparei ;-;",
-		 "Keep Calm e ESPADA ANCESTRAL!",
-		 "Rosas são vermelhas, violetas são azuis. DFO é praquele lado, pelo amor de Jesus!",
-		 "Minerva! Limpeza, maciez e perfume de Rosas.",
-		 "Hayaaaa!!!!",
-		 "Eu quero levar um Angkor pra casa <3",
-		 "Todo natal a Rena some -.-'",
-		 "WS tem bom gosto, por isso escolheu o Ventus qq",
-		 "Neste momento uma conferência de Lolis ocorre na sala Luciel",
-		 "Quem joga com capricho. Joga com Primor!",
-		 "Quando que o Raven vem me substituir? -.-'",
-		 "Acho que o BM ficou muito Furioso D:",
-		 "Pi....Ka....Chunnnng!!!!",
-		 "Este último look do Templário Cósmico ficou um ar-ra-so!",
-		 "O DDD pra Add o Add...3ioo38282j83c398c239n. **Fatal Error: Error on NaN Class.** ",
-		 "Há quanto tempo não vejo o Esper diabólico!Tá, essa foi péssima :C"
-		 ];
 		 if(catched_phrases.length == 24){catched_phrases = [];}
 		 var choosen_phrase = 0;
 		 do{
@@ -96,8 +95,8 @@ myu.on('message', message => {
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
 		 case 'reportchannel':
-		 let channel = args[0];
-		if(message.guild.owner.hasPermission("ADMINISTRATOR")){ 
+		 let channel = args[0]; 
+		if(message.member.permissions.has('ADMINISTRATOR')){ 
 		 if(myu.channels.exists("name", channel)){
 		 
 		var request = require("request");
@@ -111,7 +110,9 @@ myu.on('message', message => {
 		 message.channel.send(`Canal de reports alterado para ***${channel}***`);
 		 }else{
 		 message.channel.send(`Desculpa :c Não achei esse canal`);	 
-		}}
+		}}else{
+		 message.reply(`Você não pode usar esse comando u-u''`);	
+		}
 		 break;
 		 case 'Oi':
 		 message.reply("Olá! ^^");
@@ -119,9 +120,13 @@ myu.on('message', message => {
 		 case 'Olá!':
 		 message.reply("Olá! ^^");
 		 break;
-		 case 'rise':
-    		 let args_db = process.env.BOT_DB;	 
-		 message.reply('dois');
+		 case 'search':
+       	 sec.bing("Elwiki Rose").then(function(result){
+		 console.log(result);
+		 });
+		 break;
+		 case 'chamada':
+		 message.channel.send("Me chamaram?");
 		 break;
 		 
 		 
@@ -140,7 +145,7 @@ myu.on('message', message => {
 			message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","omg","report","forum","elwiki","elspoiler","Oi","Olá!","reportchannel","rise"].includes(command)){
+	 if(!["face","site","search","omg","report","forum","elwiki","chamada","elspoiler","Oi","Olá!","reportchannel","rise"].includes(command)){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",

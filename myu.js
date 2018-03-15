@@ -28,7 +28,7 @@ myu.on('message', message => {
 			case "elwiki":
 			usersearchview = othercontent(usersearch) + " site:elwiki.net";
 			if(usersearch){ 
-			js.bing(encodeURI(usersearchview),1,function(response){
+			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = (result_tab.match(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g) ? result_tab.replace(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g,"") : result_tab);
@@ -43,7 +43,7 @@ myu.on('message', message => {
 			var r_f = false;
 			usersearchview = usersearch + " \"showthread\" site:sites.levelupgames.com.br";
 			if(usersearch){ 
-			js.bing(encodeURI(usersearchview),1,function(response){
+			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
 			if(result_tab != undefined){
 				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
@@ -55,7 +55,7 @@ myu.on('message', message => {
 			break;
 			case "elspoiler":
 			usersearchview = "Elspoiler :last site:sites.levelupgames.com.br"; 
-			js.bing(encodeURI(usersearchview),1,function(response){
+			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
 			if(result_tab != undefined){
 				isgd.shorten(`${result_tab}`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });

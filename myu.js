@@ -41,7 +41,7 @@ myu.on('message', message => {
 			break;
 			case "forum":
 			var r_f = false;
-			usersearchview = usersearch + " \"showthread\" site:sites.levelupgames.com.br";
+			usersearchview = usersearch + " topic site:sites.levelupgames.com.br";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;

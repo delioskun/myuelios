@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const sec = require('search-engine-client');
+const sec = require('serp-spider/search-engine-google');
 const get_phrases = require('./phrases');
 const isgd = require('isgd');  
 	  

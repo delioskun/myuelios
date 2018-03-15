@@ -1,9 +1,6 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const cheerio = require('cheerio'),
-      snekfetch = require('snekfetch'),
-      querystring = require('querystring'),
-	  google = require('google'),
+const     google = require('google'),
 	  get_phrases = require('./phrases');
 	  isgd = require('isgd');  
 	  

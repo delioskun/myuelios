@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
 const myu = new Discord.Client();
-const cheerio = require('cheerio'),
-      snekfetch = require('snekfetch'),
-      querystring = require('querystring'),
-	  isgd = require('isgd');  
+const js = require('jsearch'),
+      isgd = require('isgd');  
 
 var options = {};
 var catched_phrases = [];
@@ -35,41 +33,9 @@ myu.on('message', message => {
 			break;
 		}
 		
-		let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(usersearchview)}`;
-		snekfetch.get(searchUrl).then((result) => {
-		let $ = cheerio.load(result.text); let googleData = $('.r').first().find('a').first().attr('href');
-		googleData = querystring.parse(googleData.replace('/url?', ''));
-		if(usersearch.length <= 2 && usersearch.length > 0){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-		switch(command){
-			case "elwiki":
-			if(usersearch.length > 0){	
-			if(!(googleData.q).includes("elwiki")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			let linkresult = googleData.q;
-			if((googleData.q).includes("pt-br")){linkresult = linkresult.replace("/pt-br","");}
-			message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El wiki! \n${linkresult}`);
-			}else{
-			message.reply(`Confira informações e outros conteúdos sobre Elsword na El wiki!\nhttp://elwiki.net`);	
-			}
-			break;
-			case "forum":
-			if(usersearch.length > 0){
-			if(!(googleData.q).includes("/forum/elsword")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			let virtualink = googleData.q;
-			if(virtualink.match(/[\?|\&]styleid=\d+/g)){virtualink = virtualink.replace(/styleid=\d+/g,'styleid=59');}
-			isgd.shorten(`${virtualink}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
-			}else{
-			message.reply(`Visite o nosso fórum e confira conteúdos sobre o mundo de Elios!\nhttp://sites.levelupgames.com.br/forum/elsword/forum.php`);		
-			}
-			break;
-			case "elspoiler":
-			if(!(googleData.q).includes("/forum/elsword")){throw 'Desculpa, meus sensores falharam, não achei nada :(';}
-			isgd.shorten(`${googleData.q}?styleid=59`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
-			break;
-		}
-		}).catch((err) => {
-		console.log(err);	
-		message.reply('Desculpa,meus sensores falharam, não consegui encontrar o que queria :(');
-		});		
+		js.google('Elsword Forum',10,function(response){
+		console.log(response) // Show the links for 10 pages on Google
+		})	
 		
 	 }
 	 switch(command){

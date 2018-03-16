@@ -15,6 +15,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 					host: "www.bing.com",
 					path: "/search?q="+arguments[0]
 				}
+				console.log("/search?q="+arguments[0]);
 				https.request(bAyarlar,(res)=>{
 					res.on("data",(d)=>{
 						bGelen += d;

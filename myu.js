@@ -45,7 +45,9 @@ myu.on('message', message => {
 				`Peraí, era o que mesmo pra procurar? qq Pode repetir?`
 				]
 		var count_undefined = 0;
+		if(usersearch.length > 0){	
 		message.reply(phrases_search[Math.floor((Math.random() * 4))] + phrases_search2[Math.floor((Math.random() * 4))]);
+		}
 		switch(command){
 			case "elwiki":
 			var r_f = false;
@@ -68,6 +70,8 @@ myu.on('message', message => {
 			if(count_undefined == 2){ message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); }
 			}				
 			});
+			}else{
+			message.reply(`Confira informações sobre o universo de Elsword na El Wiki!\nhttp://elwiki.net/`);	
 			}
 			break;
 			case "forum":

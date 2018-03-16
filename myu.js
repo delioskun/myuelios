@@ -58,7 +58,7 @@ myu.on('message', message => {
 				var gotcha_phrases = [
 				`Tuntz! Tuntz! Aqui! \n${result_tab}`,
 				`Gotcha! \n${result_tab}`,
-				`Hey!Espero ter ajudado ^^ \n${result_tab}`,
+				`Hey! Espero ter ajudado ^^ \n${result_tab}`,
 				`Yay! Encontrei! \n${result_tab}`
 				];	
 			message.channel.send(gotcha_phrases[Math.floor((Math.random() * 4))]);
@@ -71,7 +71,7 @@ myu.on('message', message => {
 			break;
 			case "forum":
 			var r_f = false;
-			usersearchview = usersearch.toLowerCase() + " site:sites.levelupgames.com.br";
+			usersearchview = usersearch + " site:sites.levelupgames.com.br";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
@@ -82,7 +82,7 @@ myu.on('message', message => {
 				var gotcha_phrases = [
 				`Tuntz! Tuntz! Aqui! \n${res}`,
 				`Gotcha! \n${res}`,
-				`Hey!Espero ter ajudado ^^ \n${res}.`,
+				`Hey! Espero ter ajudado ^^ \n${res}.`,
 				`Yay! Encontrei! \n${res}`
 				];		
 			message.channel.send(gotcha_phrases[Math.floor((Math.random() * 4))]);

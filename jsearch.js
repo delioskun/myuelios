@@ -1,7 +1,5 @@
 var http 	= require("http"),
-	https 	= require("https")
-
-var	urlRegExp = /(https|http)\:\/\/(www.|)(.*?)(?=\")/gi
+	https 	= require("https");
 
 exports.bing = function ( bQuery, bPage, bCb ){
 	
@@ -10,7 +8,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
 			
 			// bing search can be start :)
-			var bGelen = "" 
+			var bGelen = ""; 
 			
 			for(b=0;b<=arguments[1];b++){	
 				bAyarlar = {
@@ -22,20 +20,18 @@ exports.bing = function ( bQuery, bPage, bCb ){
 						bGelen += d;
 					})
 					res.on("end",()=>{
-					 	var bSon = bGelen.match(urlRegExp)
-						console.log(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi));
-						bCb(bSon)
+						bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi));
 					})
 				}).end()
 				
 			}
 			
 		}else{
-			bCb("Argument type error!")
+			bCb("Argument type error!");
 		}
 		
 	}else{
-		bCb("Function argument missed!")
+		bCb("Function argument missed!");
 	}
 	
 }

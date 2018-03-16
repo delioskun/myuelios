@@ -96,6 +96,21 @@ myu.on('message', message => {
 		 case 'site':
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
+		 case 'announce':
+		 if(message.member.permissions.has('ADMINISTRATOR')){
+		 switch(args[1]){
+		 case 'add':
+		 console.log('1');
+		 break;
+		 case 'delete':
+		 console.log('2');
+		 break;
+		 case 'list':
+		 console.log('3');
+		 break;
+		 }
+		 }
+		 break;
 		 case 'reportchannel':
 		 let channel = args[0]; 
 		if(message.member.permissions.has('ADMINISTRATOR')){ 
@@ -136,7 +151,7 @@ myu.on('message', message => {
 			message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","report","forum","elwiki","chamada","elspoiler","Oi","Olá!","reportchannel","rise"].includes(command)){
+	 if(!["face","site","search","announce","omg","report","forum","elwiki","chamada","elspoiler","reportchannel"].includes(command)){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",

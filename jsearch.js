@@ -23,7 +23,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 					})
 					res.on("end",()=>{
 					 	var bSon = bGelen.match(urlRegExp)
-						console.log(bGelen.match(/(https|http)\:\/\/(www.|)(elwiki.net|sites)(.*?)(?=\")/g));
+						console.log(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi));
 						bCb(bSon)
 					})
 				}).end()

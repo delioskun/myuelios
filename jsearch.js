@@ -23,7 +23,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 					})
 					res.on("end",()=>{
 					 	var bSon = bGelen.match(urlRegExp)
-						console.log(bSon);
+						console.log(bGelen);
 						bCb(bSon)
 					})
 				}).end()

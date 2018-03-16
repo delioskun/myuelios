@@ -75,6 +75,7 @@ myu.on('message', message => {
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
+			console.log(response);
 			if(result_tab != undefined){
 				result_tab = (result_tab.replace(/printthread/g,""));
 				isgd.shorten(`${result_tab}`, function(res) { 

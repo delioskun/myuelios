@@ -44,7 +44,6 @@ myu.on('message', message => {
 			usersearchview = usersearch + " sites.levelupgames.com.br";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
-			console.log("=================");console.log(response);
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
 			if(result_tab != undefined){
 				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
@@ -98,6 +97,7 @@ myu.on('message', message => {
 		 break;
 		 case 'announce':
 		 if(message.member.permissions.has('ADMINISTRATOR')){
+		 console.log(args[1]);	 
 		 switch(args[1]){
 		 case 'add':
 		 console.log('1');

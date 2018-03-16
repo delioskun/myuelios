@@ -107,7 +107,6 @@ exports.bing = function ( bQuery, bPage, bCb ){
 						bGelen += d;
 					})
 					res.on("end",()=>{
-						console.log(bGelen);
 						var bSon = bGelen.match(urlRegExp)
 						bCb(bSon)
 					})

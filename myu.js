@@ -33,10 +33,10 @@ myu.on('message', message => {
 			`Eu não tenho nada pra fazer mesmo q Vamos encontrar **${usersearch}**. `
 			];
 		let phrases_search2 = [
-		  `Vamos lá!`,
-		  `Aqui vou eu!`,
-		  `Saiam da frente!`,
-		  `E la vamos nós!`
+		  ` Vamos lá!`,
+		  ` Aqui vou eu!`,
+		  ` Saiam da frente!`,
+		  ` E la vamos nós!`
         ];
 		let fail_phrases = [
 				`CRUZES! Nem queira saber o que achei ali! D:`,
@@ -75,7 +75,6 @@ myu.on('message', message => {
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
-			console.log(response);
 			if(result_tab != undefined){
 				result_tab = (result_tab.replace(/printthread/g,""));
 				isgd.shorten(`${result_tab}`, function(res) { 

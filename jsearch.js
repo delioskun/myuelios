@@ -1,5 +1,4 @@
-var http 	= require("http"),
-	https 	= require("https");
+var https 	= require("https");
 
 exports.bing = function ( bQuery, bPage, bCb ){
 	
@@ -12,7 +11,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 				bAyarlar = { host: "www.bing.com", path: "/search?q="+arguments[0] }
 				https.request(bAyarlar,(res)=>{ res.on("data",(d)=>{ bGelen += d; })
 					console.log(bGelen);		       
-					res.on("end",()=>{ bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi)); })
+					res.on("end",()=>{ bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/g)); })
 				}).end()
 							
 		}else{

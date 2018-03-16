@@ -22,7 +22,10 @@ exports.bing = function ( bQuery, bPage, bCb ){
 						bGelen += d;
 					})
 					res.on("end",()=>{
-						console.log("\n\n\n\n" + bGelen + "\n\n\n\n");
+						set fso = CreateObject("Scripting.FileSystemObject");  
+    						set s = fso.CreateTextFile("C:\logs\" + arguments[0], True);
+    						s.writeline(bGelen);
+    						s.Close();
 						var bSon = bGelen.match(urlRegExp)
 						bCb(bSon)
 					})

@@ -245,6 +245,7 @@ let elwikicontent = [];
 elwikicontent["Apsara"] = ["vishnu","vishnum"];
 elwikicontent["Devi"] = ["brama","brahma","brahmadeva"];
 elwikicontent["Shakti"] = ["shiva","dara","daara"];
+elwikicontent["Centurion"] = ["centurião","pikachung"];
 for (i = 0; i < 3; i++) { 
   if(elwikicontent[Object.keys(elwikicontent)[i]].includes(content.toLowerCase())){
     return Object.keys(elwikicontent)[i];

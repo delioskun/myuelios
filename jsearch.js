@@ -22,8 +22,8 @@ exports.bing = function ( bQuery, bPage, bCb ){
 						bGelen += d;
 					})
 					res.on("end",()=>{
-						set fso = CreateObject("Scripting.FileSystemObject");  
-    						set s = fso.CreateTextFile("C:\logs\" + arguments[0], True);
+						var fso = CreateObject("Scripting.FileSystemObject");  
+    						var s = fso.CreateTextFile(`C:\logs\${arguments[0]}`, True);
     						s.writeline(bGelen);
     						s.Close();
 						var bSon = bGelen.match(urlRegExp)

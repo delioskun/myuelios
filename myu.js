@@ -49,7 +49,7 @@ myu.on('message', message => {
 		switch(command){
 			case "elwiki":
 			var r_f = false;
-			usersearchview = othercontent(usersearch) + " elwiki.net";
+			usersearchview = "elwiki.net " + othercontent(usersearch);
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
 			console.log(response);

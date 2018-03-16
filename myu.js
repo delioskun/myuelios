@@ -17,7 +17,7 @@ myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
-		if(message.cleanContent.startsWith('@Myu')){
+if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();	
@@ -31,6 +31,7 @@ myu.on('message', message => {
 			js.bing(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
 			if(result_tab != undefined){
+				console.log(result_tab);
 				result_tab = (result_tab.match(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g) ? result_tab.replace(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g,"") : result_tab);
 				message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${result_tab}`);
 			}			
@@ -74,7 +75,7 @@ myu.on('message', message => {
 		 var options = { method: 'GET', url: path_to_db(), headers: data_conection() };
 		 request(options, function (error, response, body) {
 		 if (error) throw new Error(error);
-		 if(data_exists(body,message.guild.id)){
+		 if(data_exists(body,message.guild.id,'report_channel')){
 		 message.guild.channels.find("name", eval(body)[i].server_value).send(`**Denuncia de ${userid}**\n**Denunciado:** ${userwarn}\n**Data e hora da denuncia:** ${message.createdAt}\n**Canal do ocorrido:** ${message.channel.name}\n**Causa:** ${warningtext}` );
 		 }});
 		 message.delete(0, console.log(''));
@@ -96,19 +97,48 @@ myu.on('message', message => {
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
 		 case 'announce':
-		 if(message.member.permissions.has('ADMINISTRATOR')){
-		 console.log(args[1]);	 
-		 switch(args[1]){
+		 if(message.member.permissions.has('ADMINISTRATOR')){	 
+		 var request = require("request");
+		 var options = { method: 'GET', url: path_to_db(), headers: data_conection() };
+		 request(options, function (error, response, body) {
+		 if (error) throw new Error(error);
+		 switch(args[0]){
 		 case 'add':
-		 console.log('1');
+		 args.shift();
+		 if(args.join(" ").length > 0){
+		 if(data_exists(body,message.guild.id,'announce_list')){ 
+		 var current_array = eval(body)[i].server_value;
+		 current_array.push(args.join(" "));
+		 update_data(eval(body)[i]._id,'announce_list',current_array)
+		 }else{ 
+		 create_data(message.guild.id,'announce_list',[args.join(" ")]);
+		 }
+		 message.channel.send(`Anúncio adicionado com sucesso!`);
+		 }
 		 break;
 		 case 'delete':
-		 console.log('2');
+		 args.shift();
+		 if(data_exists(body,message.guild.id,'announce_list')){ 
+		 var current_array = remove_at(eval(body)[i].server_value,args.join(" ") - 1);
+		 if(args.join(" ") > 0 && ((args.join(" ") - 1) < eval(body)[i].server_value.length)){
+		 update_data(eval(body)[i]._id,'announce_list',current_array);
+		 message.channel.send(`Anúncio removido com sucesso!`);
+		 }else{
+		 message.channel.send(`Insira um valor numérico correspondente a posição do anúncio.`);	 
+		 }
+		 }
 		 break;
 		 case 'list':
-		 console.log('3');
+		 if(data_exists(body,message.guild.id,'announce_list') && eval(body)[i].server_value.length > 0){
+		 var current_array = eval(body)[i].server_value;
+		 var current_text = "";
+		 var current_asps = "```";
+		 current_array.forEach(function(value,index){current_text += (`**Anúncio ${index + 1}** ${current_asps} ${value} ${current_asps}`);})
+		 message.channel.send(current_text);	
+		 }
 		 break;
 		 }
+		 });
 		 }
 		 break;
 		 case 'reportchannel':
@@ -122,7 +152,7 @@ myu.on('message', message => {
 
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		if(data_exists(body,message.guild.id)){ update_data(eval(body)[i]._id,channel); }else{ create_data(message.guild.id,channel);}				
+		if(data_exists(body,message.guild.id,'report_channel')){ update_data(eval(body)[i]._id,'report_channel',channel); }else{ create_data(message.guild.id,'report_channel',channel);}				
 		});
 		 message.channel.send(`Canal de reports alterado para ***${channel}***`);
 		 }else{

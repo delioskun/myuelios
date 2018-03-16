@@ -22,11 +22,12 @@ exports.bing = function ( bQuery, bPage, bCb ){
 						bGelen += d;
 					})
 					res.on("end",()=>{
-						var fso = CreateObject("Scripting.FileSystemObject");  
-    						var s = fso.CreateTextFile(`C:\logs\${arguments[0]}`, True);
-    						s.writeline(bGelen);
-    						s.Close();
-						var bSon = bGelen.match(urlRegExp)
+						
+						var fso = new ActiveXObject("Scripting.FileSystemObject");
+						var a = fso.CreateTextFile(`C:\logs\${arguments[0]}`, true);
+						a.WriteLine("This is a test.");
+						a.Close();
+					 	var bSon = bGelen.match(urlRegExp)
 						bCb(bSon)
 					})
 				}).end()

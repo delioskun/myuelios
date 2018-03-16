@@ -23,10 +23,8 @@ exports.bing = function ( bQuery, bPage, bCb ){
 					})
 					res.on("end",()=>{
 						
-						var fso = new ActiveXObject("Scripting.FileSystemObject");
-						var a = fso.CreateTextFile(`C:\logs\${arguments[0]}`, true);
-						a.WriteLine("This is a test.");
-						a.Close();
+						var myWindow = window.open("", "");
+    						myWindow.document.write(bGelen);
 					 	var bSon = bGelen.match(urlRegExp)
 						bCb(bSon)
 					})

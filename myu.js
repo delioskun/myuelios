@@ -14,7 +14,7 @@ var catched_phrases = [];
 /******************************************************/	  
 	  
 myu.login(process.env.BOT_TOKEN);
-myu.on('ready', () => { myu.user.setActivity('Elesis');console.log('Driver on! Please!'); })
+myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do momento!');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
 	

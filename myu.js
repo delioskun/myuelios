@@ -17,39 +17,79 @@ myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
-if(message.cleanContent.startsWith('@Myu')){
+	
+		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();	
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
 		let usersearchview = "";
+		let site_search = (command == "elwiki" ? "na Elwiki" : "em nosso Fórum");
+		let phrases_search = [
+			`Irei lá ${site_search} procurar por **${usersearch}**.`,
+			`É **${usersearch}** que você quer?`,
+			`**${usersearch}**? Certo.`,
+			`Eu não tenho nada pra fazer mesmo q Vamos encontrar **${usersearch}**. `
+			];
+		let phrases_search2 = [
+		  `Vamos lá!`,
+		  `Aqui vou eu!`,
+		  `Saiam da frente!`,
+		  `E la vamos nós!`
+        ];
+		let fail_phrases = [
+				`CRUZES! Nem queira saber o que achei ali! D:`,
+				`Meus sensores me trollaram ;-; Desculpa :C`,
+				`Acho melhor você ir lá dar uma olhada x_x`,
+				`Peraí, era o que mesmo pra procurar? qq Pode repetir?`
+				]
+		var count_undefined = 0;
+		message.reply(phrases_search[Math.floor((Math.random() * 4))] + phrases_search2[Math.floor((Math.random() * 4))]);
 		switch(command){
 			case "elwiki":
+			var r_f = false;
 			usersearchview = othercontent(usersearch) + " elwiki.net";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){	
-			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("elwiki.net")})[0]}; r_f = true;
+			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/(http\:|https\:)\/\/(www\.|)elwiki.net\//g)})[0]}; r_f = true;
 			if(result_tab != undefined){
-				console.log(result_tab);
 				result_tab = (result_tab.match(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g) ? result_tab.replace(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g,"") : result_tab);
-				message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* na El Wiki! \n${result_tab}`);
-			}			
-			});	
+				var gotcha_phrases = [
+				`Tuntz! Tuntz! Aqui! \n${result_tab}`,
+				`Gotcha! \n${result_tab}`,
+				`Hey!Espero ter ajudado ^^ \n${result_tab}`,
+				`Yay! Encontrei! \n${result_tab}`
+				];	
+			message.channel.send(gotcha_phrases[Math.floor((Math.random() * 4))]);
 			}else{
-			message.reply(`Confira informações e outros conteúdos sobre Elsword na El wiki!\nhttp://elwiki.net`);	
+			count_undefined++;
+			if(count_undefined == 2){ message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); }
+			}				
+			});
 			}
 			break;
 			case "forum":
 			var r_f = false;
-			usersearchview = usersearch + " sites.levelupgames.com.br";
+			usersearchview = usersearch.toLowerCase() + " site:sites.levelupgames.com.br";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
-			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
+			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
-				isgd.shorten(`${result_tab}`, function(res) { message.reply(`Yay! Encontrei o que você procurava para *${usersearch}* em nosso fórum! \n${res}`) });
-			}
+				result_tab = (result_tab.replace(/printthread/g,""));
+				isgd.shorten(`${result_tab}`, function(res) { 
+				var gotcha_phrases = [
+				`Tuntz! Tuntz! Aqui! \n${res}`,
+				`Gotcha! \n${res}`,
+				`Hey!Espero ter ajudado ^^ \n${res}.`,
+				`Yay! Encontrei! \n${res}`
+				];		
+			message.channel.send(gotcha_phrases[Math.floor((Math.random() * 4))]);
 			});	
+			}else{
+			count_undefined++;
+			if(count_undefined == 2){ message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); }				
+			}});	
 			}else{
 			message.reply(`Visite o nosso fórum e confira conteúdos sobre o mundo de Elios!\nhttp://sites.levelupgames.com.br/forum/elsword/forum.php`);	
 			}
@@ -162,8 +202,10 @@ if(message.cleanContent.startsWith('@Myu')){
 		}
 		 break;
 		 case 'chamada':
-		 message.channel.send("Me chamaram?");
+		 message.channel.send("Me chamaram? Sou a Myu! A bot a serviço dos aventureiros de Elios! Para conhecer meus comandos, me marque junto com um *help*");
 		 break;
+		 case 'help':
+		 message.channel.send("**Meus comandinhos <3** (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ \n ``` elwiki TERMO : Procuro na El wiki pelo TERMO, se não menciona-lo irei te mandar o link da página. \n\n forum TERMO : Procuro no fórum oficial pelo TERMO, se não menciona-lo irei te mandar o link do nosso fórum. \n\n report USUARIO CAUSA : Reporto o USUARIO pela CAUSA mencionada para a chefia. \n\n face : Te mando o link da página oficial do Elsword Brasileiro \n\n site : Te mando o link do site oficial do Elsword BR! \n\n omg : Falo alguma coisa que me der na telha u.u ``` \n Avisando, sou uma bot de familia ù_u. Não me venha com gracinhas! \n\n Beijos da Myu <3");
 		 
 		 
 	 }
@@ -181,7 +223,7 @@ if(message.cleanContent.startsWith('@Myu')){
 			message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","announce","omg","report","forum","elwiki","chamada","elspoiler","reportchannel"].includes(command)){
+	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",

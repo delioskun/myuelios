@@ -15,7 +15,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 					host: "www.bing.com",
 					path: "/search?q="+arguments[0]+"&first="+b+"1&FORM=PERE"
 				}
-				http.request(bAyarlar,(res)=>{
+				https.request(bAyarlar,(res)=>{
 					res.on("data",(d)=>{
 						bGelen += d;
 					})

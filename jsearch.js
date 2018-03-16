@@ -9,24 +9,12 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			
 			// bing search can be start :)
 			var bGelen = ""; 
-			
-			for(b=0;b<=arguments[1];b++){	
-				bAyarlar = {
-					host: "www.bing.com",
-					path: "/search?q="+arguments[0]
-				}
-				console.log("/search?q="+arguments[0]);
-				https.request(bAyarlar,(res)=>{
-					res.on("data",(d)=>{
-						bGelen += d;
-					})
-					res.on("end",()=>{
-						bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi));
-					})
+				bAyarlar = { host: "www.bing.com", path: "/search?q="+arguments[0] }
+				https.request(bAyarlar,(res)=>{ res.on("data",(d)=>{ bGelen += d; })
+					console.log(bGelen);		       
+					res.on("end",()=>{ bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/gi)); })
 				}).end()
-				
-			}
-			
+							
 		}else{
 			bCb("Argument type error!");
 		}

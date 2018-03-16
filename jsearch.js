@@ -10,7 +10,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			var bGelen = ""; 
 				bAyarlar = { host: "www.bing.com", path: "/search?q="+arguments[0] }
 				https.request(bAyarlar,(res)=>{ res.on("data",(d)=>{ bGelen += d; })		       
-					res.on("end",()=>{ console.log(bGelen); bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/g)); })
+					res.on("end",()=>{ console.log("Gotcha!"); bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/g)); })
 				}).end()
 							
 		}else{

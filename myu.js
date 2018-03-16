@@ -74,6 +74,7 @@ myu.on('message', message => {
 			usersearchview = usersearch + " site:sites.levelupgames.com.br";
 			if(usersearch){ 
 			js.bing(encodeURIComponent(usersearchview),1,function(response){
+			console.log(response);
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = (result_tab.replace(/printthread/g,""));

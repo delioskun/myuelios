@@ -1,7 +1,7 @@
 var http 	= require("http"),
 	https 	= require("https")
 
-var	urlRegExp = /(http|https)(:\/\/)[a-z0-9.-_&\/?=]{5,}/gi
+var	urlRegExp = /(http|https)(\:\/\/)((www\.|)elwiki.net|sites)(.*?)(?=\")/gi
 	
 exports.google = function (gQuery, gPage, gCb){
 	
@@ -100,7 +100,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			for(b=0;b<=arguments[1];b++){	
 				bAyarlar = {
 					host: "www.bing.com",
-					path: "/search?q="+arguments[0]+"&qs=n&form=QBRE"
+					path: "/search?q="+arguments[0]+"&first="+b+"1&FORM=PERE"
 				}
 				http.request(bAyarlar,(res)=>{
 					res.on("data",(d)=>{

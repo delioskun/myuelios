@@ -1,7 +1,7 @@
 var http 	= require("http"),
 	https 	= require("https")
 
-var	urlRegExp = /(https|http)\:\/\/(www.|)(elwiki.net|sites)(.*?)(?=\")/g
+var	urlRegExp = /(https|http)\:\/\/(www.|)(elwiki.net|sites)(.*?)(?=\")/gi
 
 exports.bing = function ( bQuery, bPage, bCb ){
 	

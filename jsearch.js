@@ -13,7 +13,7 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			for(b=0;b<=arguments[1];b++){	
 				bAyarlar = {
 					host: "www.bing.com",
-					path: "/search?q="+arguments[0]+"&qs=n&form=QBRE&sp=-1"
+					path: "/search?q="+arguments[0]
 				}
 				https.request(bAyarlar,(res)=>{
 					res.on("data",(d)=>{

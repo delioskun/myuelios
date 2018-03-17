@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( arguments.length===3 ){ 	
 		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
-			request('http://www.elwiki.net/wiki/index.php?search=Sariel&title=Special%3ASearch&go=Go', function (error, response, html) {
+			request('elwiki.net', function (error, response, html) {
  			 console.log(error);
 });
 		}else{

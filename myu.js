@@ -34,7 +34,6 @@ myu.on('message', message => {
 	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){	
 			message.reply(replieswords[Math.floor((Math.random() * 7))]);
 			message.delete(0, console.log(''));
-		return;
 	}else{		
 		
 	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
@@ -45,9 +44,8 @@ myu.on('message', message => {
 		"Ilari,Ilariê! Ô Ô Ô!Repita novamente, p-o-r f-a-v-o-r!",
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
-		message.channel.send(replies[Math.floor((Math.random() * 4))]);}
-		return;
-		}			
+		message.channel.send(replies[Math.floor((Math.random() * 4))]);
+		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
 		let usersearchview = "";
@@ -240,6 +238,8 @@ myu.on('message', message => {
 		 break;
 	  } 
 	 }
+	}
+   }
 });
 
 /******************************************************/	  

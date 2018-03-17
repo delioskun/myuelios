@@ -21,7 +21,34 @@ myu.on('message', message => {
 		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
-		args.shift();args.shift();	
+		args.shift();args.shift();
+		let replieswords = [
+	 "Vou lavar sua boca com sabão -.-''",
+		"Quanta indecência -.-'",
+		"Mds, tem respeito mais não?",
+		"Não escuto, não sou mico, meu ouvido não é pinico.",
+		"Manera as palavras, por favor.",
+		"Isto é um ambiente familiar u-u <3",
+		"Kerido, sou uma bot de respeito para ouvir palavras nesse tom."
+		];
+	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){	
+			message.reply(replieswords[Math.floor((Math.random() * 7))]);
+			message.delete(0, console.log(''));
+		return;
+	}else{		
+		
+	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
+		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
+		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
+		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
+		"Eu juro que não entendi, pode repetir?",
+		"Ilari,Ilariê! Ô Ô Ô!Repita novamente, p-o-r f-a-v-o-r!",
+		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
+		]
+		message.channel.send(replies[Math.floor((Math.random() * 4))]);}
+		return;
+		}
+		}			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
 		let usersearchview = "";
@@ -211,34 +238,9 @@ myu.on('message', message => {
 		 break;
 		 case 'help':
 		 message.channel.send("**Meus comandinhos <3** (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ \n ``` elwiki TERMO : Procuro na El wiki pelo TERMO, se não menciona-lo irei te mandar o link da página. \n\n forum TERMO : Procuro no fórum oficial pelo TERMO, se não menciona-lo irei te mandar o link do nosso fórum. \n\n report USUARIO CAUSA : Reporto o USUARIO pela CAUSA mencionada para a chefia. \n\n face : Te mando o link da página oficial do Elsword Brasileiro \n\n site : Te mando o link do site oficial do Elsword BR! \n\n omg : Falo alguma coisa que me der na telha u.u ``` \n Avisando, sou uma bot de familia ù_u. Não me venha com gracinhas! \n\n Beijos da Myu <3");
-		 
+		 break;
 		 
 	 }
-	 let replieswords = [
-	 "Vou lavar sua boca com sabão -.-''",
-		"Quanta indecência -.-'",
-		"Mds, tem respeito mais não?",
-		"Não escuto, não sou mico, meu ouvido não é pinico.",
-		"Manera as palavras, por favor.",
-		"Isto é um ambiente familiar u-u <3",
-		"Kerido, sou uma bot de respeito para ouvir palavras nesse tom."
-		];
-	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){	
-			message.reply(replieswords[Math.floor((Math.random() * 7))]);
-			message.delete(0, console.log(''));
-	}else{		
-		
-	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
-		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
-		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
-		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
-		"Eu juro que não entendi, pode repetir?",
-		"Ilari,Ilariê! Ô Ô Ô!Repita novamente, p-o-r f-a-v-o-r!",
-		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
-		]
-		message.channel.send(replies[Math.floor((Math.random() * 4))]);}
-		}
-		}		
 });
 
 /******************************************************/	  

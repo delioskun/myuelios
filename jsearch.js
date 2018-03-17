@@ -9,7 +9,8 @@ exports.bing = function ( bQuery, bPage, bCb ){
 			// bing search can be start :)
 			var bGelen = ""; 
 				bAyarlar = { host: "www.bing.com", path: "/search?q="+arguments[0] }
-				https.request(bAyarlar,(res)=>{ res.on("data",(d)=>{ bGelen += d; })		       
+				https.request(bAyarlar,(res)=>{ res.on("data",(d)=>{ bGelen += d; })
+					console.log(bGelen);		       
 					res.on("end",()=>{ console.log("Gotcha!"); bCb(bGelen.match(/(https|http)\:\/\/(www.|)(.*?)(?=\")/g)); })
 				}).end()
 							

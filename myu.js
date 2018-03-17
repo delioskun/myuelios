@@ -47,7 +47,6 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);}
 		return;
-		}
 		}			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
 		let usersearch = args.join(" ");
@@ -239,7 +238,7 @@ myu.on('message', message => {
 		 case 'help':
 		 message.channel.send("**Meus comandinhos <3** (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ \n ``` elwiki TERMO : Procuro na El wiki pelo TERMO, se não menciona-lo irei te mandar o link da página. \n\n forum TERMO : Procuro no fórum oficial pelo TERMO, se não menciona-lo irei te mandar o link do nosso fórum. \n\n report USUARIO CAUSA : Reporto o USUARIO pela CAUSA mencionada para a chefia. \n\n face : Te mando o link da página oficial do Elsword Brasileiro \n\n site : Te mando o link do site oficial do Elsword BR! \n\n omg : Falo alguma coisa que me der na telha u.u ``` \n Avisando, sou uma bot de familia ù_u. Não me venha com gracinhas! \n\n Beijos da Myu <3");
 		 break;
-		 
+	  } 
 	 }
 });
 

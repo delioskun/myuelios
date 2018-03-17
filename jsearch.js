@@ -7,10 +7,8 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 			request('https://www.bing.com/search?q=' + arguments[0], function (error, response, html) {
 			process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 			console.log(error);
-  if (!error && response.statusCode == 200) {
-    console.log(html);
-  }
-});
+ 		 if (!error && response.statusCode == 200) { bCb(html.match('(http|https)\:\/\/elwiki.net\/(.*?)(?=")/gi')); }
+	});
 		}else{
 			bCb("Argument type error!");
 		}

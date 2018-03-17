@@ -18,7 +18,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 
 myu.on('message', message => {
 	
-		if(message.cleanContent.startsWith('@Myu') && message.guild.name == "Laboratório da Noratinha"){
+		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();
@@ -103,7 +103,7 @@ myu.on('message', message => {
 			var r_f = false;
 			usersearchview = usersearch + " site:sites.levelupgames.com.br";
 			if(usersearch){ 
-			js.bing(encodeURIComponent(usersearchview),1,function(response){	
+			js.forum(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = (result_tab.replace(/printthread/g,""));

@@ -32,7 +32,7 @@ myu.on('message', message => {
 		"Kerido, sou uma bot de respeito para ouvir palavras nesse tom."
 		];
 	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){
-			console.log([message.id,message.author.name]);
+			console.log([message.id,message.author]);
 			message.reply(replieswords[Math.floor((Math.random() * 7))]);
 			message.delete(0, console.log(''));
 	}else{		

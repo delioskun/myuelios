@@ -31,7 +31,8 @@ myu.on('message', message => {
 		"Isto é um ambiente familiar u-u <3",
 		"Kerido, sou uma bot de respeito para ouvir palavras nesse tom."
 		];
-	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){	
+	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){
+			console.log("gotcha");
 			message.reply(replieswords[Math.floor((Math.random() * 7))]);
 			message.delete(0, console.log(''));
 	}else{		
@@ -102,8 +103,7 @@ myu.on('message', message => {
 			var r_f = false;
 			usersearchview = usersearch + " site:sites.levelupgames.com.br";
 			if(usersearch){ 
-			js.bing(encodeURIComponent(usersearchview),1,function(response){
-			console.log(response);	
+			js.bing(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = (result_tab.replace(/printthread/g,""));

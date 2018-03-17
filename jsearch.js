@@ -1,10 +1,9 @@
-getSource = require ('get-source');
+var cheerio = require('cheerio');
 
 exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( arguments.length===3 ){ 	
 		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
-			file = getSource ('www.google.com');
-			console.log(file);
+			const $ = cheerio.load('https://elwiki.net/wiki/index.php?search=Sariel&title=Special%3ASearch&go=Go');
 		}else{
 			bCb("Argument type error!");
 		}

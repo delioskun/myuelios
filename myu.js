@@ -32,9 +32,9 @@ myu.on('message', message => {
 		"Kerido, sou uma bot de respeito para ouvir palavras nesse tom."
 		];
 	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){
-			var message_id = message.id;
 			message.reply(replieswords[Math.floor((Math.random() * 7))]);
-			console.log([message.id,message_id]);
+			console.log([message.id]);
+		        message.delete(0, console.log(''));
 	}else{		
 		
 	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){

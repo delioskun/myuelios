@@ -16,12 +16,11 @@ var timeout_users = [];
 
 setInterval(function(){ 
 if(Object.keys(timeout_users).length > 0){
-var text = document.getElementById("demo").innerHTML;
 Object.keys(timeout_users).forEach(function(n){
 timeout_users[n] -= 1;
 if(timeout_users[n] == 0){ timeout_users = removed_at(Object.keys(timeout_users),n)} })
-}
 console.log(timeout_users);
+}
 }, 3000);
 
 /******************************************************/	  

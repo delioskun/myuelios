@@ -151,7 +151,7 @@ myu.on('message', message => {
 			case "elspoiler":
 			usersearchview = "elspoiler - sites.levelupgames"; 
 			js.elspoiler(encodeURIComponent(usersearchview),1,function(response){
-			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword\//g)})[0]}; r_f = true;
+			if (!r_f && response != null){ var result_tab = "http://sites.levelupgames.com.br/forum/elsword/" + response[0]}; r_f = true;
 			if(result_tab != undefined){
 				isgd.shorten(`${result_tab}`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
 			}			

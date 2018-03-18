@@ -38,7 +38,7 @@ exports.elspoiler = function ( bQuery, bPage, bCb ){
 		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
 			request('https://www.bing.com/search?q=' + arguments[0], function (error, response, html) {
 			process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-			console.log(html.match(/http(s|)\:(.*?)(?=(\"|\'))/gi));
+			console.log(html.match(/levelup/gi));
  		 if (!error && response.statusCode == 200) { bCb(html.match(/http(s|)\:\/\/(www.|)(\<strong\>|)sites\.levelupgames\.com\.br\/(.*?)(?=\")/gi)); }
 	});
 		}else{

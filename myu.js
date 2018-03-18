@@ -60,7 +60,7 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
+	 if(!["face","site","search","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -97,7 +97,7 @@ myu.on('message', message => {
 		if((usersearch.length > 0) && ['elwiki','forum'].includes(command)){	
 		message.reply(phrases_search[Math.floor((Math.random() * 4))] + phrases_search2[Math.floor((Math.random() * 4))]);
 		}
-		switch(command){
+		switch(command.toLowerCase()){
 			case "elwiki":
 			var r_f = false;
 			if(usersearch){ 

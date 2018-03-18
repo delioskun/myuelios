@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	var url = String('https://elwiki.net/w/');
+	var url = String('https://elwiki.net/w/Main_Page/index.html');
 	request(url, function (error, response, body) {
 	console.log(body);
 	});

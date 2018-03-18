@@ -125,11 +125,11 @@ myu.on('message', message => {
 			break;
 			case "forum":
 			var r_f = false;
-			usersearchview = usersearch + " Elspoiler :last level up";
 			if(usersearch){ 
-			js.forum(encodeURIComponent(usersearchview),1,function(response){	
+			js.forum(encodeURIComponent(usersearch),1,function(response){	
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
+				result_tab = "http://sites.levelupgames.com.br/forum/elsword/" + result_tab;
 				result_tab = (result_tab.replace(/printthread/g,""));
 				isgd.shorten(`${result_tab}`, function(res) { 
 				var gotcha_phrases = [

@@ -8,7 +8,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	var url = String('https://elwiki.net/wiki/index.php?search=' + encodeURIComponent(bQuery));
 	request(url, function (error, response, body) {
 	if(error){return;}
-	if(!response.request.uri.href.match(/\?search/gi)){bCb([response.request.uri.href]);return;}else{console.log(body.match(/\/w(.*?)(?=(\"))/gi));}
+	if(!response.request.uri.href.match(/\?search/gi)){bCb([response.request.uri.href]);return;}else{console.log(body.match(/\/w\/(.*?)(?=(\"))/gi));}
 	});
 }
 

@@ -19,7 +19,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	if(error){return;}	
 	request(response.request.uri.href, function (a, b, c) {
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);
-	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });	
+	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });		
 	if(results_table.length > 0){bCb(results_table);}	
 	});
 	});	
@@ -35,7 +35,8 @@ let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
 for (i = 0; i < 3; i++) { 
   if(searchless[Object.keys(searchless)[i]].includes(content.toLowerCase())){
-    return Object.keys(elwikicontent)[i];
+    console.log(Object.keys(searchless)[i]);	  
+    return Object.keys(searchless)[i];
     break;
   }else{
      if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");}  

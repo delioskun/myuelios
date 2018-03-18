@@ -6,10 +6,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
 	var url = String('https://elwiki.net/wiki/index.php?title=Special:Search&search=-+Rose');
 	request(url, function (error, response, body) {	
-	if(error){return;}	
-	request(response.request.uri.href, function (a, b, c) {
-	console.log(c);	
-	});
+	console.log(body);
 	});
 }
 

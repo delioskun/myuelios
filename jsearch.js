@@ -1,5 +1,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var https = require('follow-redirects').https;
 
 exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( arguments.length===3 ){ 	
@@ -18,19 +19,15 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 }
 
 exports.forum = function ( bQuery, bPage, bCb ){
-	if( arguments.length===3 ){ 	
-		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
-		request('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + arguments[0] + '&titleonly=1', function (error, response, html) {
-			process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-			console.log(response.request.uri.href);
- 		 if (!error && response.statusCode == 200) { bCb('teste'); }
-	});		
-		}else{
-			bCb("Argument type error!");
-		}
-	}else{
-		bCb("Function argument missed!");
-	}
+	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
+	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
+	http.get('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=Black+Massacre&titleonly=1', function (res) {
+  	res.on('data', function (chunk) {
+    	console.log(chunk);
+  	});
+	}).on('error', function (err) {
+  	console.error(err);
+	});	
 }
 
 exports.elspoiler = function ( bQuery, bPage, bCb ){

@@ -160,7 +160,9 @@ myu.on('message', message => {
 			break;
 		}
 	 }else{
+	 if(['elwiki','forum','elspoiler'].includes(command)){	 
 	 message.reply("Aguarde um pouquinho uwu");
+	 }	 
 	 }
 	 switch(command){
 		 case 'report':

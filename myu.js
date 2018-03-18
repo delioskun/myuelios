@@ -41,7 +41,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 
 myu.on('message', message => {
 	
-		if(message.cleanContent.startsWith('@Myu') && message.guild.name == "Laboratório da Noratinha"){
+		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();

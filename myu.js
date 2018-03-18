@@ -104,6 +104,7 @@ myu.on('message', message => {
 			js.elwiki(usersearch,1,function(response){
 			if (!r_f && response != null){ var result_tab = response[0]}; r_f = true;
 			if(result_tab != undefined){
+				result_tab = 'https://elwiki.net' + result_tab;
 				result_tab = (result_tab.match(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g) ? result_tab.replace(/\/(zh|zh-hans|vi|ru|de|ar|es|fr|id|it|pl|pt-br)$/g,"") : result_tab);
 				var gotcha_phrases = [
 				`Tuntz! Tuntz! Aqui! \n${result_tab}`,

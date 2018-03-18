@@ -95,7 +95,7 @@ myu.on('message', message => {
 				`Peraí, era o que mesmo pra procurar? qq Pode repetir?`
 				]
 		var count_undefined = 0;
-		if(usersearch.length > 0){	
+		if((usersearch.length > 0) && ['elwiki','forum'].includes(command)){	
 		message.reply(phrases_search[Math.floor((Math.random() * 4))] + phrases_search2[Math.floor((Math.random() * 4))]);
 		}
 		switch(command){
@@ -151,14 +151,16 @@ myu.on('message', message => {
 			break;
 			case "elspoiler":
 			usersearchview = "Elspoiler :last site:sites.levelupgames.com.br"; 
-			js.bing(encodeURIComponent(usersearchview),1,function(response){
-			if (!r_f){ var result_tab = response.filter(function(n){return n.includes("http://sites.levelupgames.com.br/forum/elsword/")})[0]}; r_f = true;
+			js.forum(encodeURIComponent(usersearchview),1,function(response){
+			if (!r_f){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;
 			if(result_tab != undefined){
 				isgd.shorten(`${result_tab}`, function(res) { message.reply(`***Elspoiler desta semana! Confira:***\n${res}`) });
 			}			
 			});	
 			break;
 		}
+	 }else{
+	 message.reply("Aguarde um pouquinho uwu");
 	 }
 	 switch(command){
 		 case 'report':

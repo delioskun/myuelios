@@ -15,10 +15,10 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
 	console.log(bQuery);
-	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + bQuery + '&titleonly=1');
+	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + bQuery + '&titleonly=1&forumchoice[]=50&forumchoice[]=Y');
 	request(url, function (error, response, body) {
 	request(response.request.uri.href, function (a, b, c) {
-	console.log(c.match(/showthread(.*?)(?=\;s)/gi));	
+	console.log(c);	
 	});
 	});	
 }

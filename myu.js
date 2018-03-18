@@ -125,7 +125,7 @@ myu.on('message', message => {
 			break;
 			case "forum":
 			var r_f = false;
-			usersearchview = usersearch + " site:sites.levelupgames.com.br";
+			usersearchview = usersearch + " Elspoiler :last level up";
 			if(usersearch){ 
 			js.forum(encodeURIComponent(usersearchview),1,function(response){	
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword/g)})[0]}; r_f = true;

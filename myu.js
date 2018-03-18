@@ -43,7 +43,7 @@ myu.on('message', message => {
 	
 		if(message.cleanContent.startsWith('@Myu')){
 		const args = message.content.slice(1).trim().split(/ +/);
-		const command = (args[1] == undefined ? "chamada" : args[1]);	
+		const command = (args[1] == undefined ? "chamada" : args[1]).toLowerCase();
 		args.shift();args.shift();
 		let replieswords = [
 	 "Vou lavar sua boca com sabão -.-''",

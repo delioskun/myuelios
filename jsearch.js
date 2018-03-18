@@ -23,7 +23,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 			request('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + arguments[0] + '&titleonly=1', function (error, response, html) {
 			process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 			console.log(error);
-			console.log(html.match(/showthread(.*?)(?=\")/gi));	
+			console.log(html);	
  		 if (!error && response.statusCode == 200) { bCb(html.match(/showthread(.*?)(?=\")/gi)); }
 	});
 		}else{

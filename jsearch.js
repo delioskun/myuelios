@@ -14,12 +14,12 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	console.log(bQuery);
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1&forumchoice[]=50&forumchoice[]=Y');
-	request(url, function (error, response, body) {
+	request(url, function (error, response, body) {	
 	if(error){return;}	
 	request(response.request.uri.href, function (a, b, c) {
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);
+	console.log(results_table);	
 	if(results_table.length > 0){bCb(results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v)\-gt/g)){return k;} }));}	
 	});
 	});	

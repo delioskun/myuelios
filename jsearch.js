@@ -14,7 +14,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1&forumchoice[]=50&forumchoice[]=Y');
+	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1');
 	request(url, function (error, response, body) {	
 	if(error){return;}	
 	request(response.request.uri.href, function (a, b, c) {
@@ -28,14 +28,23 @@ exports.forum = function ( bQuery, bPage, bCb ){
 exports.elspoiler = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
+	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=Elspoiler&titleonly=1');
+	request(url, function (error, response, body) {	
+	if(error){return;}	
+	request(response.request.uri.href, function (a, b, c) {
+	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);
+	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });		
+	if(results_table.length > 0){bCb(results_table);}	
+	});
+	});
 }
 
 function r_s(content){
 let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
-for (i = 0; i < 3; i++) { 
-  if(searchless[Object.keys(searchless)[i]].includes(content.toLowerCase())){
-    console.log(Object.keys(searchless)[i]);	  
+for (i = 0; i < 3; i++) {
+  console.log([searchless[Object.keys(searchless)[i]],content]);	
+  if(searchless[Object.keys(searchless)[i]].includes(content.toLowerCase())){	  
     return Object.keys(searchless)[i];
     break;
   }else{

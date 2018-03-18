@@ -149,7 +149,7 @@ myu.on('message', message => {
 			}
 			break;
 			case "elspoiler":
-			usersearchview = "elspoiler :last level up"; 
+			usersearchview = "elspoiler level up"; 
 			js.elspoiler(encodeURIComponent(usersearchview),1,function(response){
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/elsword\//g)})[0]}; r_f = true;
 			if(result_tab != undefined){

@@ -47,7 +47,7 @@ do {
   console.log([Object.keys(searchless)[opl],content]);
   opl++;
 }
-while(opl < 2);	
+while(opl < 3);	
      if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");} 
 }
 

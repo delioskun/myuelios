@@ -7,7 +7,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 	var url = String('https://elwiki.net/wiki/index.php?search=' + encodeURIComponent(bQuery));
 	request(url, function (error, response, body) {
-	console.log(response);
+	console.log(response.path);
 	});
 }
 

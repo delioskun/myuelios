@@ -140,9 +140,7 @@ myu.on('message', message => {
 			message.channel.send(gotcha_phrases[Math.floor((Math.random() * 4))]);
 			});	
 			}else{
-			count_undefined++;
-			console.log(count_undefined);
-			if(count_undefined == 2){ message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); }				
+			message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); 				
 			}});	
 			}else{
 			message.reply(`Visite o nosso fórum e confira conteúdos sobre o mundo de Elios!\nhttp://sites.levelupgames.com.br/forum/elsword/forum.php`);	

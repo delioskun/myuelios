@@ -7,12 +7,37 @@ const js = require('./jsearch'),
 let phrases = get_phrases.myu_phrases();
 	  
 var options = {};
-var catched_phrases = [];	  	  
+var catched_phrases = [];
+var timeout_users = [];
 	  
 /******************************************************/	  
 	  
 /******************************************************/	  
+
+setInterval(function(){ 
+if(Object.keys(timeout_users).length > 0){
+var text = document.getElementById("demo").innerHTML;
+Object.keys(timeout_users).forEach(function(n){
+timeout_users[n] -= 1;
+if(timeout_users[n] == 0){ timeout_users = removed_at(Object.keys(timeout_users),n)} })
+}
+console.log(timeout_users);
+}, 3000);
+
+/******************************************************/	  
 	  
+/******************************************************/
+
+function removed_at(arr,value){
+var new_arr = [];
+arr.forEach(function(n){ if(value != n){new_arr[n] = timeout_users[n];} });
+return new_arr;
+}
+
+/******************************************************/	  
+	  
+/******************************************************/	
+
 myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do momento!');console.log('Driver on! Please!'); })
 
@@ -47,7 +72,8 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 		}else{			
-		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase())){
+		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && !Object.keys.includes('user_' + message.author.id)){
+		timeout_users['user_' + message.author.id] = 5;	
 		let usersearch = args.join(" ");
 		let usersearchview = "";
 		let site_search = (command == "elwiki" ? "na Elwiki" : "em nosso Fórum");

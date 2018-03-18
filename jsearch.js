@@ -7,7 +7,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 	var url = String('https://elwiki.net/wiki/index.php?search=Rose&title=Special%3ASearch&fulltext=Search');
 	request(url, function (error, response, body) {
-	console.log(error);
+	console.log(body);
 	});
 }
 

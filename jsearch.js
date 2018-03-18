@@ -14,7 +14,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	console.log(r_s(bQuery));
+	if(r_s(bQuery) == "Índice de Guias"){bCb(["showthread.php?39107-%CDndice-de-Guias"]);return;}
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1');
 	request(url, function (error, response, body) {	
 	if(error){return;}	
@@ -44,7 +44,7 @@ function r_s(content){
 let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
 var opl = 0;	
-do { if(searchless[Object.keys(searchless)[opl]].includes(content)){ return Object.keys(searchless)[opl]; break; } opl++; }
+do { console.log(searchless[Object.keys(searchless)[opl]]); opl++; }
 while(opl < 3);	
      if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");} 
 }

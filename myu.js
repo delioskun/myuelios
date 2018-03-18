@@ -125,8 +125,7 @@ myu.on('message', message => {
 			case "forum":
 			var r_f = false;
 			if(usersearch){ 
-			js.forum(encodeURIComponent(usersearch),1,function(response){
-			console.log(response.length);	
+			js.forum(encodeURIComponent(usersearch),1,function(response){	
 			if (!r_f && response != null){ var result_tab = response[0]}; r_f = true;
 			if(response.length > 0){
 				result_tab = "http://sites.levelupgames.com.br/forum/elsword/" + result_tab;
@@ -142,6 +141,7 @@ myu.on('message', message => {
 			});	
 			}else{
 			count_undefined++;
+			console.log(count_undefined);
 			if(count_undefined == 2){ message.channel.send(fail_phrases[Math.floor((Math.random() * 4))]); }				
 			}});	
 			}else{

@@ -6,7 +6,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
 	var url = String('https://www.bing.com/search?q=' + encodeURIComponent(bQuery + 'elwiki'));
 	request(url, function (error, response, body) {
-	console.log(body.match(/http(s|)\:\/\/(.*?|)elwiki(.*?|)\.net\/w(.*?)(?=(\'))/gi));
+	console.log(body.match(/http(s|)\:\/\/(.*?|)(?=(\'))/gi));
 	});
 }
 

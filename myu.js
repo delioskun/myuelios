@@ -41,7 +41,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 
 myu.on('message', message => {
 	
-		if(message.cleanContent.startsWith('@Myu')){
+		if(message.cleanContent.startsWith('@Myu') && message.guild.name == "Laboratório da Noratinha"){
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]);	
 		args.shift();args.shift();
@@ -60,7 +60,7 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","announce","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
+	 if(!["face","site","search","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command)){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -71,7 +71,7 @@ myu.on('message', message => {
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && !Object.keys(timeout_users).includes('user_' + message.author.id)){
-		timeout_users['user_' + message.author.id] = 5;	
+		timeout_users['user_' + message.author.id] = 10;	
 		let usersearch = args.join(" ");
 		let usersearchview = "";
 		let site_search = (command == "elwiki" ? "na Elwiki" : "em nosso Fórum");
@@ -193,51 +193,6 @@ myu.on('message', message => {
 		 break;
 		 case 'site':
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
-		 break;
-		 case 'announce':
-		 if(message.member.permissions.has('ADMINISTRATOR')){	 
-		 var request = require("request");
-		 var options = { method: 'GET', url: path_to_db(), headers: data_conection() };
-		 request(options, function (error, response, body) {
-		 if (error) throw new Error(error);
-		 switch(args[0]){
-		 case 'add':
-		 args.shift();
-		 if(args.join(" ").length > 0){
-		 if(data_exists(body,message.guild.id,'announce_list')){ 
-		 var current_array = eval(body)[i].server_value;
-		 current_array.push(args.join(" "));
-		 update_data(eval(body)[i]._id,'announce_list',current_array)
-		 }else{ 
-		 create_data(message.guild.id,'announce_list',[args.join(" ")]);
-		 }
-		 message.channel.send(`Anúncio adicionado com sucesso!`);
-		 }
-		 break;
-		 case 'delete':
-		 args.shift();
-		 if(data_exists(body,message.guild.id,'announce_list')){ 
-		 var current_array = remove_at(eval(body)[i].server_value,args.join(" ") - 1);
-		 if(args.join(" ") > 0 && ((args.join(" ") - 1) < eval(body)[i].server_value.length)){
-		 update_data(eval(body)[i]._id,'announce_list',current_array);
-		 message.channel.send(`Anúncio removido com sucesso!`);
-		 }else{
-		 message.channel.send(`Insira um valor numérico correspondente a posição do anúncio.`);	 
-		 }
-		 }
-		 break;
-		 case 'list':
-		 if(data_exists(body,message.guild.id,'announce_list') && eval(body)[i].server_value.length > 0){
-		 var current_array = eval(body)[i].server_value;
-		 var current_text = "";
-		 var current_asps = "```";
-		 current_array.forEach(function(value,index){current_text += (`**Anúncio ${index + 1}** ${current_asps} ${value} ${current_asps}`);})
-		 message.channel.send(current_text);	
-		 }
-		 break;
-		 }
-		 });
-		 }
 		 break;
 		 case 'reportchannel':
 		 let channel = args[0]; 

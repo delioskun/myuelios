@@ -100,9 +100,8 @@ myu.on('message', message => {
 		switch(command){
 			case "elwiki":
 			var r_f = false;
-			usersearchview = "elwiki.net " + othercontent(usersearch);
 			if(usersearch){ 
-			js.elwiki(encodeURIComponent(usersearchview),1,function(response){
+			js.elwiki(encodeURIComponent(usersearch),1,function(response){
 			console.log(response);
 			if (!r_f && response != null){ var result_tab = response.filter(function(n){return n.match(/(https|http)\:\/\/(www.|)elwiki.net(.*?)/gi)})[0]}; r_f = true;
 			if(result_tab != undefined){

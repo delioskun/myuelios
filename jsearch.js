@@ -44,7 +44,7 @@ function r_s(content){
 let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
 var opl = 0;	
-do { console.log(searchless[Object.keys(searchless)[opl]]); opl++; }
+do { console.log(searchless[Object.keys(searchless)[opl]].includes(content.toLowerCase())); opl++; }
 while(opl < 3);	
      if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");} 
 }

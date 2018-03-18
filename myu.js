@@ -71,7 +71,7 @@ myu.on('message', message => {
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && !Object.keys(timeout_users).includes('user_' + message.author.id)){
-		timeout_users['user_' + message.author.id] = 10;	
+		timeout_users['user_' + message.author.id] = 5;	
 		let usersearch = args.join(" ");
 		let usersearchview = "";
 		let site_search = (command == "elwiki" ? "na Elwiki" : "em nosso Fórum");

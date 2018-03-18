@@ -20,7 +20,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length===3 ){ 	
 		if( typeof(arguments[1])=="number" && typeof(arguments[2])=="function" ){
-			request('http://sites.levelupgames.com.br/forum/elsword/forumdisplay.php?123-Agentes-do-Imp%E9rio', function (error, response, html) {
+			request('http://sites.levelupgames.com.br/forum/elsword/search.php?searchid=1056104', function (error, response, html) {
 			process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 			console.log(error);
 			console.log(html);	

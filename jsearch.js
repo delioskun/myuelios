@@ -34,6 +34,7 @@ exports.elspoiler = function ( bQuery, bPage, bCb ){
 	if(error){return;}	
 	request(response.request.uri.href, function (a, b, c) {
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);
+	console.log(results_table);
 	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });		
 	if(results_table.length > 0){bCb(results_table);}	
 	});

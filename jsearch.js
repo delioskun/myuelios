@@ -9,7 +9,6 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 	console.log(error);
 	console.log(body);
 	});
-	});
 }
 
 exports.forum = function ( bQuery, bPage, bCb ){

@@ -126,6 +126,7 @@ myu.on('message', message => {
 			var r_f = false;
 			if(usersearch){ 
 			js.forum(encodeURIComponent(usersearch),1,function(response){
+			console.log(response.length);	
 			if (!r_f && response != null && response.length > 0){ var result_tab = response[0]}; r_f = true;
 			if(result_tab != undefined){
 				result_tab = "http://sites.levelupgames.com.br/forum/elsword/" + result_tab;

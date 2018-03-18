@@ -20,7 +20,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	var url = `http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=${bQuery}&titleonly=1`;
+	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + bQuery + '&titleonly=1');
 	request(url, function (error, response, body) {
   	console.log(response.request.uri.href);
 	request(response.request.uri.href, function (a, b, c) {

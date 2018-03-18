@@ -42,8 +42,8 @@ exports.elspoiler = function ( bQuery, bPage, bCb ){
 function r_s(content){
 let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
-for (i = 0; i < 3; i++) {
-  console.log([searchless[Object.keys(searchless)[i]],content]);	
+for (i = 0; i < 2; i++) {
+  console.log([Object.keys(searchless),content]);	
   if(searchless[Object.keys(searchless)[i]].includes(content.toLowerCase())){	  
     return Object.keys(searchless)[i];
     break;

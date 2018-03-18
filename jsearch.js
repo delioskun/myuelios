@@ -50,5 +50,4 @@ do {
 while(opl < 2);	
      if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");} 
 }
-}
 

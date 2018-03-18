@@ -42,14 +42,13 @@ exports.elspoiler = function ( bQuery, bPage, bCb ){
 function r_s(content){
 let searchless = [];
 searchless["LuCiel"] = ["lu","ciel"];searchless["Ainchase"] = ["ain"];searchless["Ara Haan"] = ["ara"];
-for (i = 0; i < 2; i++) {
-  console.log([Object.keys(searchless),content]);	
-  if(searchless[Object.keys(searchless)[i]].includes(content.toLowerCase())){	  
-    return Object.keys(searchless)[i];
-    break;
-  }else{
-     if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");}  
-  }
+var opl = 0;	
+do {
+  console.log([Object.keys(searchless)[opl],content]);
+  opl++;
+}
+while(opl < 2);	
+     if(content.length > 3){return content;}else{return encodeURIComponent("Índice de Guias");} 
 }
 }
 

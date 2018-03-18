@@ -18,7 +18,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + bQuery + '&titleonly=1&forumchoice[]=50&forumchoice[]=Y');
 	request(url, function (error, response, body) {
 	request(response.request.uri.href, function (a, b, c) {
-	console.log(c);	
+	console.log(c.match(/showthread(.*?)(?=\;s)/gi));	
 	});
 	});	
 }

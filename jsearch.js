@@ -23,7 +23,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	request('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=Black+Massacre&titleonly=1', function (error, response, body) {
   	console.log(response.request.uri.href);
 	request(response.request.uri.href, function (a, b, c) {
-	console.log(c);	
+	console.log(c.match(/showthread(.*?)(?=\")/gi));	
 	});
 	});	
 }

@@ -15,6 +15,7 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
+	console.log(['teste:',indice_files(bQuery)]);
 	if(indice_files(bQuery) || r_s(bQuery) == "Índice de Guias"){bCb(indice_files(bQuery));return;}
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1');
 	request(url, function (error, response, body) {	

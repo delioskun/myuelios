@@ -59,6 +59,6 @@ while(opl < 3);
 function indice_files(content){ 
   request('http://sites.levelupgames.com.br/forum/elsword/showthread.php?39107-%CDndice-de-Guias', function (error, response, body) {
     var re = new RegExp('showthread(.*?)' + encodeURI(content.replace(/\s/gi,"-")) + '((.*?)|)(?=\\")','g');	  
-    if(body.match(re)){ console.log(["me",body.match(re)]);return body.match(re); }else{return ["showthread.php?39107-%CDndice-de-Guias"];}
+    if(body.match(re)){ console.log(["me",re]);return body.match(re); }else{return ["showthread.php?39107-%CDndice-de-Guias"];}
   });
 }  

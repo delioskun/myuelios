@@ -15,10 +15,10 @@ exports.elwiki = function ( bQuery, bPage, bCb ){
 exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
-	if(r_s(bQuery) == "Índice de Guias"){bCb(["showthread.php?39107-%CDndice-de-Guias"]);return;}
+	if(r_s(bQuery) == "Índice de Guias"){bCb(indice_files(bQuery));return;}
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1');
 	request(url, function (error, response, body) {	
-	if(error){bCb(["showthread.php?39107-%CDndice-de-Guias"]);return;}	
+	if(error){bCb(indice_files(bQuery));return;}	
 	request(response.request.uri.href, function (a, b, c) {
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);	
 	if(!results_table || results_table.length < 1){bCb([]);return;}		
@@ -56,3 +56,10 @@ while(opl < 3);
      if(content.length > 3){return content;}else{return "Índice de Guias";} 
 }
 
+function indice_files(content){ 
+  request('http://sites.levelupgames.com.br/forum/elsword/showthread.php?39107-%CDndice-de-Guias', function (error, response, body) {
+    var re = new RegExp('/' + content + '/','g');
+    console.log(body.match(re));
+  });
+  return ["showthread.php?39107-%CDndice-de-Guias"];
+}  

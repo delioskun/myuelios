@@ -24,6 +24,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	request(url, function (err, res, content) {	
 	if(err){return;}	
 	request(res.request.uri.href, function (a, b, c) {
+	console.log(c);	
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);	
 	if(!results_table || results_table.length < 1){bCb([]);return;}		
 	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });		

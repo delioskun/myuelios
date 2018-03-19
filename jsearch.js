@@ -21,10 +21,10 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	  }else{
 	if(r_s(bQuery) == "Índice de Guias"){bCb(['showthread.php?39107-%CDndice-de-Guias']);return;}
 	var url = String('http://sites.levelupgames.com.br/forum/elsword/search.php?do=process&query=' + r_s(bQuery) + '&titleonly=1');
-	request(url, function (err, res, content) {	
+	request(url, function (err, res, content) {
+	console.log(url);	
 	if(err){return;}	
-	request(res.request.uri.href, function (a, b, c) {
-	console.log(c);	
+	request(res.request.uri.href, function (a, b, c) {	
 	var results_table = c.match(/showthread(.*?)(?=\;s)/gi);	
 	if(!results_table || results_table.length < 1){bCb([]);return;}		
 	var results_table = results_table.filter(function(k){ if(!k.toLowerCase().match(/(c|v|t)\-gt/g)){return k;} });		

@@ -16,7 +16,7 @@ exports.forum = function ( bQuery, bPage, bCb ){
 	if( arguments.length!=3 ){bCb("Function argument missed!");return;} 	
 	if( typeof(arguments[1])!="number" && typeof(arguments[2])!="function" ){bCb("Argument type error!");return;}
 	  request('http://sites.levelupgames.com.br/forum/elsword/showthread.php?39107-%CDndice-de-Guias', function (error, response, body) {
-    	  var re = new RegExp('showthread(.*?)' + encodeURI(content.replace(/\s/gi,"-")) + '((.*?)|)(?=\\")','g');	  
+    	  var re = new RegExp('showthread(.*?)' + encodeURI(bQuery.replace(/\s/gi,"-")) + '((.*?)|)(?=\\")','g');	  
     	  if(body.match(re) != undefined){bCb(body.match(re));return;}	  
   	  });
 	if(r_s(bQuery) == "Índice de Guias"){bCb(['showthread.php?39107-%CDndice-de-Guias']);return;}

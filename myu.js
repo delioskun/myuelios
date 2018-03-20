@@ -61,7 +61,7 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","send","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
+	 if(!["face","site","search","omg","send","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase()) || !myu_online){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -202,8 +202,8 @@ myu.on('message', message => {
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
 		 case 'send':
-		 if(myu_online && message.author.id == '147127853635338240'){	 
-		 message.channel.send();
+		 if(message.author.id == '147127853635338240'){	 
+		 message.guild.channels.find("ID", `413409855127158785`).send(args[0]);
 	 	 }	 
 		 break;	 
 		 case 'reportchannel':

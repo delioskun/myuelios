@@ -186,6 +186,11 @@ myu.on('message', message => {
 		 message.channel.send(phrases[choosen_phrase]);
 		 catched_phrases.push(choosen_phrase);
 		 break;
+		 case 'gotcha':
+		 if(message.author.id == '147127853635338240'){	 
+		 message.channel.send('Iniciando minha dominação deste Discord.');
+		 }
+		 break;	 
 		 case 'face':
 		 message.reply('Visite a nossa página no facebook!\nhttps://www.facebook.com/ElswordLU');
 		 break;

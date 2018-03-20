@@ -60,7 +60,7 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","report","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
+	 if(!["face","site","search","omg","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -186,8 +186,7 @@ myu.on('message', message => {
 		 message.channel.send(phrases[choosen_phrase]);
 		 catched_phrases.push(choosen_phrase);
 		 break;
-		 case 'gotcha':
-		 console.log(message.author.id);	 
+		 case 'gotcha':	 
 		 if(message.author.id == '147127853635338240'){	 
 		 message.channel.send('Iniciando minha dominação deste Discord.');
 		 }

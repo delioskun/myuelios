@@ -2,8 +2,9 @@ const Discord = require('discord.js');
 const myu = new Discord.Client();
 const js = require('./jsearch'),
 	  get_phrases = require('./phrases'),
-	  isgd = require('isgd');  
-	  
+          ai_bot = require('./aibot'),
+	  isgd = require('isgd');
+		  
 let phrases = get_phrases.myu_phrases();
 	  
 var options = {};
@@ -62,6 +63,7 @@ myu.on('message', message => {
 	}else{		
 		
 	 if(!["face","site","search","omg","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){ 
+	     if(!myu_online){	
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -70,6 +72,7 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
+	        }	 
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){
 		timeout_users['user_' + message.author.id] = 5;	
@@ -188,12 +191,17 @@ myu.on('message', message => {
 		 message.channel.send(phrases[choosen_phrase]);
 		 catched_phrases.push(choosen_phrase);
 		 break;
-		 case 'gotcha':	 
-		 console.log(message.author.id);	 
+		 case 'gotcha':	 	 
 		 if(message.author.id == '147127853635338240'){	 
 		 myu_online = true;	 
 		 message.channel.send('Iniciando minha dominação deste Discord.');
 		 }
+		 break;	
+		 case 'timeup':
+		 if(message.author.id == '147127853635338240'){	 
+		 myu_online = false;	 
+		 message.channel.send('Até mais meus amores <3');
+		 }	 
 		 break;	 
 		 case 'face':
 		 message.reply('Visite a nossa página no facebook!\nhttps://www.facebook.com/ElswordLU');

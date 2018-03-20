@@ -72,9 +72,8 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
-	        }else{
-		console.log(message.author.name);	
-		message.channel.send(ai_bot.message(args.join(" ")),message.author.name);	
+	        }else{	
+		message.channel.send(ai_bot.message(args.join(" ")),message.author);	
 		}
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){

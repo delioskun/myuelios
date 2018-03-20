@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node myu.js"
   },
-  "author": "Delios",
+  "author": "Untitled",
   "license": "ISC",
   "dependencies": {
     "bing.search": "^1.0.1",

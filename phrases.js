@@ -71,6 +71,7 @@ module.exports = {
 	         "Go! Go! Myurangers!",
 	         "Você disse, pipoca?",
 	         "Procura-se: Poporu que a Lupina me roubou ;-;",
+	         "Rasec, pare de mexer nos meus circuitos! ;-;",
 	         "Cinco guilitos foram passear. Além da Capela para brincar!",
 	         "No meu casamento só vou de Véu se o Vel der.",
 	         "Estou comendo bolachas, passe depois u_u",

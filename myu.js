@@ -61,8 +61,7 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","send","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
-	   if(!myu_online){	 
+	 if(!["face","site","search","omg","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){ 
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -71,7 +70,6 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
-	 	} 
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){
 		timeout_users['user_' + message.author.id] = 5;	
@@ -203,11 +201,6 @@ myu.on('message', message => {
 		 case 'site':
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
-		 case 'send':
-		 if(message.author.id == '147127853635338240'){	 
-		 message.guild.channels.find("ID", `413409855127158785`).send(args[0]);
-	 	 }	 
-		 break;	 
 		 case 'reportchannel':
 		 let channel = args[0]; 
 		if(message.member.permissions.has('ADMINISTRATOR')){ 

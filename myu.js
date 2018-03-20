@@ -178,7 +178,7 @@ myu.on('message', message => {
 		 message.delete(0, console.log(''));
 		 break;
 		 case 'omg':
-		 console.log(message.guild.channel.id);	 
+		 console.log(message.channel.id);	 
 		 if(catched_phrases.length == phrases.length){catched_phrases = [];}
 		 var choosen_phrase = 0;
 		 do{

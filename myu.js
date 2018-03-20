@@ -73,6 +73,7 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 	        }else{	
+		console.log(message.author);	
 		message.channel.send(ai_bot.message(args.join(" ")),message.author);	
 		}
 		}else{			

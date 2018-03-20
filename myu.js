@@ -61,7 +61,8 @@ myu.on('message', message => {
 		        message.delete(0, console.log(''));
 	}else{		
 		
-	 if(!["face","site","search","omg","send","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase()) || !myu_online){
+	 if(!["face","site","search","omg","send","report","gotcha","forum","elwiki","help","chamada","elspoiler","reportchannel"].includes(command.toLowerCase())){
+	   if(!myu_online){	 
 		let replies = ["Amore, precisa de um help? Não entendi o que deseja.",
 		"Me chamaram? x3 Desculpa, mas não entendi o seu comando, pode repetir?",
 		"Se está insinuando algo, eu realmente não entendi! Repita o comando.",
@@ -70,6 +71,7 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
+	 	} 
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){
 		timeout_users['user_' + message.author.id] = 5;	

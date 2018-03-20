@@ -187,6 +187,7 @@ myu.on('message', message => {
 		 catched_phrases.push(choosen_phrase);
 		 break;
 		 case 'gotcha':
+		 console.log(message.author.id);	 
 		 if(message.author.id == '147127853635338240'){	 
 		 message.channel.send('Iniciando minha dominação deste Discord.');
 		 }

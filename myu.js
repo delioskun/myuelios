@@ -72,7 +72,9 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
-	        }	 
+	        }else{
+		message.channel.send(ai_bot.message(args.join(" ")));	
+		}
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){
 		timeout_users['user_' + message.author.id] = 5;	

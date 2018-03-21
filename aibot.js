@@ -9,8 +9,7 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		var size = eval(body).length - 1;
-		console.log(size);	
+		var size = eval(body).length;	
 		for(i=0;i < size;i++){	
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){

@@ -17,7 +17,7 @@ exports.message = function ( content,author,bcb ){
 		request(url, function (err, resp, bd) {		
 		if(error){bcb("Aconteceu algo de errado nos meus sensores. Tente novamente.");return;}
 		request(resp.request.uri.href, function (a, b, c) {
-		console.log(resp.request.uri.href);	
+		console.log(c);	
 		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); bcb(eval(sek)); return;}	
 		});	
 		});	

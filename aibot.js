@@ -10,8 +10,8 @@ exports.message = function ( content,author ){
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
 		var size = eval(body).length - 1;
-		for(i=0;i < size;i++){
-		console.log(eval(body)[i]);	
+		console.log(size);	
+		for(i=0;i < size;i++){	
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(eval(body)[i].respostas);

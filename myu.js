@@ -73,8 +73,7 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 	        }else{	
-		console.log(message.author.username);	
-		var authorname = String(message.author.username);	
+		const authorname = String(message.author.username);	
 		message.channel.send(ai_bot.message(args.join(" ")),authorname);	
 		}
 		}else{			

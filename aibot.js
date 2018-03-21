@@ -11,10 +11,10 @@ exports.message = function ( content,author ){
 		if (error) throw new Error(error);
 		var size = eval(body).length;	
 		for(i=0;i < size;i++){	
-		var re = new RegExp(eval(body)[i].pergunta,'gi');
-		console.log(re);	
+		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(eval(body)[i].respostas);
+		console.log(args);	
 		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie = eval(sek);break;}}
 		}
 		});

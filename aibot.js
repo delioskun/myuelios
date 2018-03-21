@@ -8,7 +8,7 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-    console.log(body);  
+  eval(body).forEach(function(question){console.log(question.pergunta);});  
 		});
   return "No momento não estou programada para responder a isto " + author.username + ". x3";
 }

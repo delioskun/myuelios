@@ -12,7 +12,7 @@ exports.message = function ( content,author,bcb ){
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(eval(body)[i].respostas);	
-		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); bcb(eval(sek)); return;}
+		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond);console.log(n); bcb(eval(sek)); return;}
 		}
 		i++;	
 		}

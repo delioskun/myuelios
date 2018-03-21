@@ -8,8 +8,8 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		var replie = "";	
-		for(i=0,i < (eval(body).length - 1),i++){
+		var replie = "";var size = eval(body).length - 1;		
+		for(i=0,i < size,i++){
 		var re = new RegExp(question.pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(question.respostas);

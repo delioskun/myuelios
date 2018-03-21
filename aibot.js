@@ -9,10 +9,10 @@ exports.message = function ( content,author ){
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
 		do{
-		if(i == 2){return "olá!";break;}
+		if(i == 2){bcb("olá!");return;}
 		i++;
 		}
 		while(i < 5);	
-		return "teste"; 	
+		bcb("teste"); 	
 		});
 }

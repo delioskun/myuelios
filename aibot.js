@@ -10,7 +10,10 @@ exports.message = function ( content,author ){
 		if (error) throw new Error(error);
   eval(body).forEach(function(question){
 	  var re = new RegExp(question.pergunta,'gi');
-	  console.log(content.match(re));
+	  if(content.match(re)){
+		var answer = question.respostas;
+		console.log(answer);  
+	  }
   });  
 		});
   return "No momento não estou programada para responder a isto " + author.username + ". x3";

@@ -44,6 +44,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 myu.on('message', message => {
 	
 		if(message.cleanContent.startsWith('@Myu')){
+		const authorname = message.author.username;	
 		const args = message.content.slice(1).trim().split(/ +/);
 		const command = (args[1] == undefined ? "chamada" : args[1]).toLowerCase();
 		args.shift();args.shift();
@@ -72,8 +73,7 @@ myu.on('message', message => {
 		"Você está me preocupando, porque não entendi o que quis dizer. Repita D:"
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
-	        }else{	
-		const authorname = String(message.author.username);	
+	        }else{		
 		message.channel.send(ai_bot.message(args.join(" ")),authorname);	
 		}
 		}else{			

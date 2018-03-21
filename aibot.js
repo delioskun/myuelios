@@ -12,16 +12,6 @@ exports.message = function ( content,author,bcb ){
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(eval(body)[i].respostas);	
-		if(eval(body)[i].site_auxiliar != "nenhum"){
-		var url = String(eval(body)[i].site_auxiliar);
-		request(url, function (err, resp, bd) {		
-		if(error){bcb("Aconteceu algo de errado nos meus sensores. Tente novamente.");return;}
-		request(resp.request.uri.href, function (a, b, c) {
-		var content_body = c;	
-		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); bcb(eval(sek)); return;}	
-		});	
-		});	
-		}
 		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); bcb(eval(sek)); return;}
 		}
 		i++;	

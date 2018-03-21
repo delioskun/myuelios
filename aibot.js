@@ -9,12 +9,12 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		var size = eval(body).length - 1;		
+		var size = eval(body).length - 1;
 		for(i=0;i < size;i++){
-		var re = new RegExp(question.pergunta,'gi');	
+		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
-		var args = eval(question.respostas);
-		if(question.cond && question.cond.length > 0){eval(question.cond); replie = eval(sek);break;}}
+		var args = eval(eval(body)[i].respostas);
+		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie = eval(sek);break;}}
 		console.log(replie);	
 		}
 		});

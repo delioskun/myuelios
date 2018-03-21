@@ -8,7 +8,10 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-  eval(body).forEach(function(question){console.log(question.pergunta);});  
+  eval(body).forEach(function(question){
+	  var re = new RegExp(question.pergunta,'gi');
+	  console.log(content.match(re));
+  });  
 		});
   return "No momento não estou programada para responder a isto " + author.username + ". x3";
 }

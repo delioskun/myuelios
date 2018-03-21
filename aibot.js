@@ -14,9 +14,9 @@ exports.message = function ( content,author ){
 		var re = new RegExp(question.pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(question.respostas);
-		if(question.cond && question.cond.length > 0){eval(question.cond); replie = eval(sek);break;}}	
+		if(question.cond && question.cond.length > 0){eval(question.cond); replie = eval(sek);break;}}
+		console.log(replie);	
 		}
 		});
-	        console.log(replie);
   		return (replie.length > 0 ? replie : "No momento não estou programada para responder a isto " + author.username + ". x3");
 }

@@ -17,6 +17,8 @@ exports.message = function ( content,author,bcb ){
 		i++;	
 		}
 		while(i < size);
+		if(author.username != "Myu"){	
 		bcb("No momento não estou programada para responder a isto " + author.username + ". x3");
+		}
 		});
 }

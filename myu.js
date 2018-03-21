@@ -75,7 +75,7 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 	        }else{		
-		message.channel.send(ai_bot.message(message_content,authorname);	
+		message.channel.send(ai_bot.message(message_content,authorname));	
 		}
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){

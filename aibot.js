@@ -16,6 +16,7 @@ exports.message = function ( content,author ){
 		var args = eval(eval(body)[i].respostas);	
 		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie_dft = false; return eval(sek); break;}}
 		}
+		console.log(replie_dft);	
 		if(replie_dft){ return "No momento não estou programada para responder a isto " + author.username + ". x3"; }	
 		});
 }

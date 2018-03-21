@@ -8,15 +8,16 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		var size = eval(body).length;
-		var replie_dft = true;	
-		for(i=0;i < size;i++){	
+		var size = eval(body).length;var i = 0;var replie = "No momento não estou programada para responder a isto " + author.username + ". x3";
+		do{
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(eval(body)[i].respostas);	
-		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie_dft = false; return eval(sek); break;}}
+		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie = eval(sek); break;}
 		}
-		console.log(replie_dft);	
-		if(replie_dft){ return "No momento não estou programada para responder a isto " + author.username + ". x3"; }	
+		i++;	
+		}
+		while(i < size);
+		return replie; 	
 		});
 }

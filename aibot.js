@@ -5,14 +5,14 @@ return { 'cache-control': conn_ai[0], 'x-apikey': conn_ai[1], 'content-type': co
 
 exports.message = function ( content,author ){	
   var options = { method: 'GET', url: process.env.BOT_AIDBPATH, headers: connect_db() };
-  var request = require("request");var i = 0;var name = "teste";
+  var request = require("request");var i = 0;
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
 		do{
-		if(i == 2){name = "olá!";break;}
+		if(i == 2){return "olá!";break;}
 		i++;
 		}
 		while(i < 5);	
-		return name; 	
+		return "teste"; 	
 		});
 }

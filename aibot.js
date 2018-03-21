@@ -5,7 +5,7 @@ return { 'cache-control': conn_ai[0], 'x-apikey': conn_ai[1], 'content-type': co
 
 exports.message = function ( content,author ){
   var options = { method: 'GET', url: process.env.BOT_AIDBPATH, headers: connect_db() };
-
+  var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
     console.log(body);  

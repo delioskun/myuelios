@@ -9,7 +9,7 @@ exports.message = function ( content,author ){
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
 		var replie = "";var size = eval(body).length - 1;		
-		for(i=0,i < size,i++){
+		for(i=0;i < size;i++){
 		var re = new RegExp(question.pergunta,'gi');	
 	  	if(content.match(re)){
 		var args = eval(question.respostas);

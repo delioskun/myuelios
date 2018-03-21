@@ -8,13 +8,14 @@ exports.message = function ( content,author ){
   var request = require("request");
 		request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-  eval(body).forEach(function(question){
-	  var re = new RegExp(question.pergunta,'gi');
-	  if(content.match(re)){
+		var replie = "";	
+		for(i=0,i < (eval(body).length - 1),i++){
+		var re = new RegExp(question.pergunta,'gi');	
+	  	if(content.match(re)){
 		var args = eval(question.respostas);
-		if(question.cond && question.cond.length > 0){eval(question.cond);console.log(eval(sek));}    
-	  }
-  });  
+		if(question.cond && question.cond.length > 0){eval(question.cond); var replie = eval(sek);break;}    
+	  	}	
+		}
 		});
-  return "No momento não estou programada para responder a isto " + author.username + ". x3";
+  		return (replie.length > 0 ? replie : "No momento não estou programada para responder a isto " + author.username + ". x3");
 }

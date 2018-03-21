@@ -13,9 +13,8 @@ exports.message = function ( content,author ){
 		for(i=0;i < size;i++){	
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
 	  	if(content.match(re)){
-		var args = eval(eval(body)[i].respostas);
-		console.log(args);	
-		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie = eval(sek);break;}}
+		var args = eval(eval(body)[i].respostas);	
+		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); replie = eval(sek); console.log(replie); break;}}
 		}
 		});
   		return (replie.length > 0 ? replie : "No momento não estou programada para responder a isto " + author.username + ". x3");

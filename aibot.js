@@ -7,12 +7,16 @@ exports.message = function ( content,author,bcb ){
   var options = { method: 'GET', url: process.env.BOT_AIDBPATH, headers: connect_db() };
   var request = require("request");var i = 0;
 		request(options, function (error, response, body) {
-		if (error) throw new Error(error);
+		var size = eval(body).length;var i = 0;
 		do{
-		if(i == 2){bcb("olá!");return;}
-		i++;
+		var re = new RegExp(eval(body)[i].pergunta,'gi');	
+	  	if(content.match(re)){
+		var args = eval(eval(body)[i].respostas);	
+		if(eval(body)[i].cond && eval(body)[i].cond.length > 0){eval(eval(body)[i].cond); bcb(eval(sek)); return;}
 		}
-		while(i < 5);	
-		bcb("teste"); 	
+		i++;	
+		}
+		while(i < size);
+		bcb("No momento não estou programada para responder a isto " + author.username + ". x3");
 		});
 }

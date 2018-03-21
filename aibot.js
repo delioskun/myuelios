@@ -11,9 +11,8 @@ exports.message = function ( content,author ){
   eval(body).forEach(function(question){
 	  var re = new RegExp(question.pergunta,'gi');
 	  if(content.match(re)){
-		var args = question.respostas;
-		if(question.cond && question.cond.length > 0){eval(question.cond);}  
-		console.log(sek);  
+		var args = eval(question.respostas);
+		if(question.cond && question.cond.length > 0){eval(question.cond);console.log(sek);}    
 	  }
   });  
 		});

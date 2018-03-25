@@ -44,7 +44,8 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 myu.on('message', message => {
 	
 		if(message.cleanContent.startsWith('@Myu')){
-		const authorname = message.author;	
+		const authorname = message.author;
+		const myu_mentions = message.mentions;	
 		const args = message.content.slice(1).trim().split(/ +/);
 		const message_content = args.join(" ");	
 		const command = (args[1] == undefined ? "chamada" : args[1]).toLowerCase();
@@ -75,7 +76,7 @@ myu.on('message', message => {
 		]
 		message.channel.send(replies[Math.floor((Math.random() * 4))]);
 	        }else{		
-		ai_bot.message(message_content,authorname,function(response){message.channel.send(response);});	
+		ai_bot.message(message_content,myu_mentions,authorname,function(response){message.channel.send(response);});	
 		}
 		}else{			
 		if(["forum","elwiki","elspoiler"].includes(command.toLowerCase()) && (!Object.keys(timeout_users).includes('user_' + message.author.id) ||  message.member.permissions.has('ADMINISTRATOR'))){

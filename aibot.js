@@ -12,6 +12,7 @@ exports.message = function ( content,author,bcb ){
 		var size = eval(body).length;var i = 0;var max_captch = "";var index_request = 0;
 		do{
 		var re = new RegExp(eval(body)[i].pergunta,'gi');	
+		console.log(content);
 	  	if(content.match(re)){ if(content.match(re)[0].length > max_captch.length){max_captch = content.match(re)[0];index_request = i;}}
 		i++;	
 		}

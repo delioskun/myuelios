@@ -17,7 +17,8 @@ exports.message = function ( contt,author,bcb ){
 		i++;	
 		}
 		while(i < size);
-		var args = eval(eval(body)[index_request].respostas);	
+		var args = eval(eval(body)[index_request].respostas);
+		var url = eval(body)[index_request].site_auxiliar;
 		if(max_captch.length > 0 && eval(body)[index_request].cond && eval(body)[index_request].cond.length > 0){
 			eval(eval(body)[index_request].cond); bcb(eval(sek)); return;}
 		if(author.username != "Myu"){ bcb("No momento não estou programada para responder a isto " + author.username + ". x3");}

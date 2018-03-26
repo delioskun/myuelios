@@ -61,7 +61,6 @@ myu.on('message', message => {
 		];
 	if(message.content.match(/ch.v.s(c.|k)|krl|c.r.lh.|(c.|k)(ss|c|s).t.|bct|(b.c.t.)|ppk|mrd|m[e,i,u]rd(|.)|porr.|bost.|(teu|no) cu|(\bput.)|v.di.|vi.do/g)){
 			message.reply(replieswords[Math.floor((Math.random() * 7))]);
-			console.log([message.id]);
 		        message.delete(0, console.log(''));
 	}else{		
 		

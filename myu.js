@@ -213,6 +213,11 @@ myu.on('message', message => {
 		 case 'site':
 		 message.reply('Confira noticias e informações sobre o mundo de Elios no site oficial!\nhttp://elsword.uol.com.br/');
 		 break;
+		 case 'rmm':
+		 if(message.member.permissions.has('ADMINISTRATOR')){
+		 console.log(message.guild);	 
+		 }
+	   	 break;
 		 case 'reportchannel':
 		 let channel = args[0]; 
 		if(message.member.permissions.has('ADMINISTRATOR')){ 

@@ -215,7 +215,7 @@ myu.on('message', message => {
 		 break;
 		 case 'rmm':
 		 if(message.member.permissions.has('ADMINISTRATOR')){
-		 console.log(message.guild);	 
+		 console.log(message.guild.users.get(*));	 
 		 }
 	   	 break;
 		 case 'reportchannel':

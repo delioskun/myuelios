@@ -44,15 +44,6 @@ myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do momento!');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
-		if(message.guild.name == 'Laboratório da Noratinha'){
-		var c_y = String(time.getFullYear());var c_m = String(time.getMonth() + 1);var c_d = String(time.getDate());
-		var c_h = String(time.getHours());var guild_id = message.guild.id; var guild_name = message.guild.name;	
-		if(!data_montly[guild_id]){ data_montly[guild_id] = { name: guild_name, data: [] }; }
-		if(!data_montly[guild_id]["data"][c_y]){ data_montly[guild_id]["data"].push({ c_y: [] }); }
-		if(!data_montly[guild_id]["data"][c_y][c_m]){ data_montly[guild_id]["data"][c_y].push({ c_m: [] }); }
-		if(!data_montly[guild_id]["data"][c_y][c_m][c_d]){ data_montly[guild_id]["data"][c_y][c_m][c_d].push({ c_d: [] }); }
-		if(!data_montly[guild_id]["data"][c_y][c_m][c_d][c_h]){ data_montly[guild_id]["data"][c_y][c_m][c_d][c_h].push({ c_h: [] }); }			
-		}
 		if(message.cleanContent.startsWith('@Myu')){
 		const authorname = message.author;
 		const myu_mentions = message.mentions;	

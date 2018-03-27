@@ -10,6 +10,7 @@ let phrases = get_phrases.myu_phrases();
 var options = {};
 var catched_phrases = [];
 var timeout_users = [];
+var data_montly = [];
 var myu_online = false;
 	  
 /******************************************************/	  
@@ -42,7 +43,7 @@ myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do momento!');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
-	
+		console.log(message.guild.name);
 		if(message.cleanContent.startsWith('@Myu')){
 		const authorname = message.author;
 		const myu_mentions = message.mentions;	

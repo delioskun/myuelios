@@ -44,7 +44,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 
 myu.on('message', message => {
 		if(message.guild.name == 'Laboratório da Noratinha'){
-		if(!data_montly[message.guild.id]){data_montly[message.guild.id] = { name: message.guild.name; }}
+		if(!data_montly[message.guild.id]){data_montly[message.guild.id] = { name: message.guild.name }}
 		console.log(data_montly[message.guild.id]);	
 		}
 		if(message.cleanContent.startsWith('@Myu')){

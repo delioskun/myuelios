@@ -183,7 +183,7 @@ myu.on('message', message => {
 		 request(options, function (error, response, body) {
 		 if (error) throw new Error(error);
 		 if(data_exists(body,message.guild.id,'report_channel')){
-		 var quote = "```"; var fulldate = day + "/" + month + "/" + second; var fullhour = hra + ":" + min + ":" + sec; 	
+		 var quote = "```"; var fulldate = day + "/" + month + "/" + year; var fullhour = hra + ":" + min + ":" + sec; 	
 		 message.guild.channels.find("name", eval(body)[i].server_value).send(`${quote}**Denuncia de ${userid}**\n**Denunciado:** ${userwarn}\n**Data e hora da denuncia:** ${fulldate} às ${fullhour}\n**Canal do ocorrido:** ${message.channel.name}\n**Causa:** ${warningtext}${quote}` );
 		 }});
 		 message.delete(0, console.log(''));

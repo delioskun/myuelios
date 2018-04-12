@@ -175,7 +175,7 @@ myu.on('message', message => {
 	 switch(command){
 		 case 'report':
 		 let userid = message.author;
-		 let userwarn = args[0];
+		 var userwarn = args[0];
 		 args.shift();
 		 let warningtext = args.join(" ");
 		 var request = require("request");

@@ -46,10 +46,7 @@ myu.login(process.env.BOT_TOKEN);
 myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do momento!');console.log('Driver on! Please!'); })
 
 myu.on('message', message => {
-		if(message.guild.name == "Laboratório da Noratinha"){
-		console.log(message.author);
-		}
-		if(message.author == "Drabaki" && message.content == "OUSA MESMO ME ENFRENTAR? DESAPAREÇA!!!"){
+		if(message.author.id == "437767571115343913" && message.content == "OUSA MESMO ME ENFRENTAR? DESAPAREÇA!!!"){
 			message.channel.send("```Markdown #Cuidado! Drabaki irá atacar! Defenda-se!```");
 		}
 		if(message.cleanContent.startsWith('@Myu')){

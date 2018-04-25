@@ -48,7 +48,7 @@ myu.on('ready', () => { myu.user.setActivity('Elesis. O jogo de ação do moment
 myu.on('message', message => {
 		if(message.author.id == "437767571115343913" && message.content == "OUSA MESMO ME ENFRENTAR? DESAPAREÇA!!!"){
 			var qu = "```";
-			message.channel.send(`${qu}Markdown\n#Cuidado! Drabaki irá atacar! Defenda-se!${qu}`);
+			message.channel.send(`${qu}Markdown\n#Drabaki irá atacar! Cuidado!${qu}`);
 		}
 		if(message.cleanContent.startsWith('@Myu')){
 		const authorname = message.author;
